@@ -4,6 +4,7 @@
 ## Itération 1
 
 - [ ] Modélisation d’une base de données avec un MCD.
+![MCD](https://raw.githubusercontent.com/NicoLarson/PPE_BTS_SIO_SLAM2/master/MCD.png)
 - [ ] Vérification du fonctionnement correct de l’application grâce à des tests unitaires.
 - [ ] Gestion de la date de départ et de celle d’arrivée de chaque employé (couche métier + tests unitaires).
 - [x] Représentation des menus du dialogue en ligne de commande avec un arbre heuristique (Utilisez un logiciel de type Freemind). 
