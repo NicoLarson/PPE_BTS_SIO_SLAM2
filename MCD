@@ -1,3 +1,3 @@
-EMPLOYE: id_emp:int, nom_emp:varchar(32), prenom_emp:varchar(32), mail_emp:varchar(32), password_emp:varchar(128)admin_emp:bool, super_admin_emp:bool
-APPARTENIR, 1N EMPLOYE, 1N LIGUE
+EMPLOYE: id_emp:int, nom_emp:varchar(32), prenom_emp:varchar(32), mail_emp:varchar(32), password_emp:varchar(128), admin_emp:bool, super_admin_emp:bool
+APPARTENIR, 01 EMPLOYE, 0N LIGUE: admin_de_la_ligue
 LIGUE: id_lig:int, nom_lig:varchar(32)
