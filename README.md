@@ -7,7 +7,9 @@
 ![MCD](https://raw.githubusercontent.com/NicoLarson/PPE_BTS_SIO_SLAM2/master/MCD.png)
 - [ ] Vérification du fonctionnement correct de l’application grâce à des tests unitaires.
 - [ ] Gestion de la date de départ et de celle d’arrivée de chaque employé (couche métier + tests unitaires).
-- [ ] Représentation des menus du dialogue en ligne de commande avec un arbre heuristique (Utilisez un logiciel de type Freemind). 
+- [x] Représentation des menus du dialogue en ligne de commande avec un arbre heuristique (Utilisez un logiciel de type Freemind). 
+![TreeMind](https://raw.githubusercontent.com/NicoLarson/PPE_BTS_SIO_SLAM2/master/commandLine.png)
+
 
 ## Itération 2
 
