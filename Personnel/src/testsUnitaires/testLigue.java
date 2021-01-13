@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
-
+import java.time.LocalDate;
 import personnel.*;
 
 class testLigue
@@ -22,7 +22,7 @@ class testLigue
 	void addEmploye() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
-		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty"); 
+		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty", null, null); 
 		assertEquals(employe, ligue.getEmployes().first());
 	}
 	
@@ -67,7 +67,7 @@ class testLigue
 	void setAdmin() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		ligue.setAdministrateur(employe);
 		assertEquals(employe, ligue.getAdministrateur());
 	}

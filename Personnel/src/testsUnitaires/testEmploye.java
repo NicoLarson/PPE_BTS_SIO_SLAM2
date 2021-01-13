@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
-
+import java.time.LocalDate;
 import personnel.*;
 
 class testEmploye 
@@ -15,7 +15,7 @@ class testEmploye
 	void isAdmin() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		assertFalse(employe.estAdmin(ligue));
 		ligue.setAdministrateur(employe);
 		assertTrue(employe.estAdmin(ligue));
@@ -26,7 +26,7 @@ class testEmploye
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
 		Employe employe = gestionPersonnel.getRoot();
-		Employe employe2 = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe2 = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		assertTrue(employe.estRoot());
 		assertFalse(employe2.estRoot());
 	}
@@ -35,7 +35,7 @@ class testEmploye
 	void getNom() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		assertEquals("Richards", employe.getNom());
 	}
 
@@ -43,7 +43,7 @@ class testEmploye
 	void setNom() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		employe.setNom("John");
 		assertEquals("John", employe.getNom());
 	}
@@ -52,7 +52,7 @@ class testEmploye
 	void getPrenom() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		assertEquals("Nigel", employe.getPrenom());
 	}
 	
@@ -60,7 +60,7 @@ class testEmploye
 	void setPrenom() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		employe.setPrenom("Doe");
 		assertEquals("Doe", employe.getPrenom());
 	}
@@ -69,7 +69,7 @@ class testEmploye
 	void getMail() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		assertEquals("n.richards@mail.ru", employe.getMail());
 		
 	}
@@ -78,7 +78,7 @@ class testEmploye
 	void setMail() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		employe.setMail("n.richards@qq.com");
 		assertEquals("n.richards@qq.com", employe.getMail());
 	}
@@ -87,15 +87,50 @@ class testEmploye
 	void getLigue() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		assertEquals(ligue, employe.getLigue());
 	}
 	
+	
+	@Test
+	void getDateDepart() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("ffsc");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", LocalDate.parse("2018-12-28"), LocalDate.parse("2018-12-30"));
+		assertEquals(LocalDate.parse("2018-12-30"), employe.getDateDepart());
+	}
+	
+	@Test
+	void setDateDepart() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("ffsc");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", LocalDate.parse("2018-12-28"), LocalDate.parse("2018-12-30"));
+		employe.setDateDepart(LocalDate.parse("2018-12-31"));
+		assertEquals(LocalDate.parse("2018-12-31"), employe.getDateDepart());
+	}
+	
+	@Test
+	void getDateArrive() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("ffsc");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", LocalDate.parse("2018-12-28"), LocalDate.parse("2018-12-30"));
+		assertEquals(LocalDate.parse("2018-12-28"), employe.getDateArrive());
+	}
+	
+	@Test
+	void setDateArrive() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("ffsc");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", LocalDate.parse("2018-12-28"), LocalDate.parse("2018-12-30"));
+		employe.setDateArrive(LocalDate.parse("2018-12-29"));
+		assertEquals(LocalDate.parse("2018-12-29"), employe.getDateArrive());
+	}
+
 	@Test
 	void checkPassword() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		assertFalse(employe.checkPassword("admiN"));
 		assertTrue(employe.checkPassword("admin"));
 	}
@@ -104,7 +139,7 @@ class testEmploye
 	void setPassword() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		employe.setPassword("ytreza");
 		assertFalse(employe.checkPassword("admin"));
 		assertTrue(employe.checkPassword("ytreza"));
@@ -114,7 +149,7 @@ class testEmploye
 	void remove() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		employe.remove();
 		assertEquals(0, ligue.getEmployes().size());
 	}
@@ -123,9 +158,9 @@ class testEmploye
 	void compareTo() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe firstEmploye = ligue.addEmploye("meme", "Nigel", "n.richards@mail.ru", "admin");
-		Employe secondEmploye = ligue.addEmploye("meme", "Nigels", "n.richards@mail.ru", "admin2");
-		Employe thirdEmploye = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin3");
+		Employe firstEmploye = ligue.addEmploye("meme", "Nigel", "n.richards@mail.ru", "admin", null, null);
+		Employe secondEmploye = ligue.addEmploye("meme", "Nigels", "n.richards@mail.ru", "admin2", null, null);
+		Employe thirdEmploye = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin3", null, null);
 		assertEquals(1, secondEmploye.compareTo(firstEmploye));
 		assertEquals(27, secondEmploye.compareTo(thirdEmploye));
 	}
@@ -134,7 +169,7 @@ class testEmploye
 	void toStringEmploye() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
 		Employe rootEmploye = gestionPersonnel.getRoot();
 		assertEquals("Richards Nigel n.richards@mail.ru (ffsc)", employe.toString());
 		assertEquals("root   (super-utilisateur)", rootEmploye.toString());
