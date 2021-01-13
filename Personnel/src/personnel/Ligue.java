@@ -123,13 +123,13 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	/**
 	 * Supprime la ligue, entraîne la suppression de tous les employés
 	 * de la ligue.
+	 * @return 
 	 */
 	
 	public void remove()
 	{
 		GestionPersonnel.getGestionPersonnel().remove(this);
 	}
-	
 
 	@Override
 	public int compareTo(Ligue autre)
