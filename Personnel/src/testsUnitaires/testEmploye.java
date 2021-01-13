@@ -16,9 +16,9 @@ class testEmploye
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
 		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
-		assertEquals(false, employe.estAdmin(ligue));
+		assertFalse(employe.estAdmin(ligue));
 		ligue.setAdministrateur(employe);
-		assertEquals(true, employe.estAdmin(ligue));
+		assertTrue(employe.estAdmin(ligue));
 	}
 	
 	@Test
