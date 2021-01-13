@@ -55,7 +55,6 @@ class testEmploye
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
 		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin");
 		assertEquals("Nigel", employe.getPrenom());
-		
 	}
 	
 	@Test
