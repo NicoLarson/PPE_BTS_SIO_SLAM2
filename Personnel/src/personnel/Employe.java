@@ -68,10 +68,13 @@ public class Employe implements Serializable, Comparable<Employe>
 	/**
 	 * Change le nom de l'employé.
 	 * @param nom le nouveau nom.
+	 * @return 
 	 */
 	
 	public void setNom(String nom)
 	{
+		if (nom.equals("test"))
+			throw new IllegalArgumentException("Age is not valid!");
 		this.nom = nom;
 	}
 
@@ -123,8 +126,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @param password le password auquel comparer celui de l'employé.
 	 */
 	
-	public void setDateDepart(LocalDate dateDepart)
+	public void setDateDepart(LocalDate dateDepart) throws DateImpossible
 	{
+		if (dateArrive.isAfter(dateDepart))
+			throw new DateImpossible();
 		this.dateDepart = dateDepart;
 	}
 	
@@ -133,8 +138,10 @@ public class Employe implements Serializable, Comparable<Employe>
 		return dateDepart;
 	}
 
-	public void setDateArrive(LocalDate dateArrive)
-	{
+	public void setDateArrive(LocalDate dateArrive) throws DateImpossible
+	{		
+		if (dateDepart.isBefore(dateArrive))
+			throw new DateImpossible();
 		this.dateArrive = dateArrive;
 	}
 	
