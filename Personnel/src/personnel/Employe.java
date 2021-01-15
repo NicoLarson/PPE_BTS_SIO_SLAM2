@@ -73,8 +73,6 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	public void setNom(String nom)
 	{
-		if (nom.equals("test"))
-			throw new IllegalArgumentException("Age is not valid!");
 		this.nom = nom;
 	}
 
