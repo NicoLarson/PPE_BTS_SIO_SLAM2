@@ -126,7 +126,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	public void setDateDepart(LocalDate dateDepart) throws DateImpossible
 	{
-		if (dateArrive.isAfter(dateDepart))
+		if (dateArrive != null && dateDepart != null && dateArrive.isAfter(dateDepart))
 			throw new DateImpossible();
 		this.dateDepart = dateDepart;
 	}
@@ -138,7 +138,7 @@ public class Employe implements Serializable, Comparable<Employe>
 
 	public void setDateArrive(LocalDate dateArrive) throws DateImpossible
 	{		
-		if (dateDepart.isBefore(dateArrive))
+		if (dateArrive != null && dateDepart != null && dateDepart.isBefore(dateArrive))
 			throw new DateImpossible();
 		this.dateArrive = dateArrive;
 	}
