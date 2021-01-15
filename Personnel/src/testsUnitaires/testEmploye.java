@@ -101,12 +101,20 @@ class testEmploye
 	}
 	
 	@Test
-	void setDateDepart() throws SauvegardeImpossible
+	void setDateDepart() throws SauvegardeImpossible, DateImpossible
 	{
-		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", LocalDate.parse("2018-12-28"), LocalDate.parse("2018-12-30"));
-		employe.setDateDepart(LocalDate.parse("2018-12-31"));
-		assertEquals(LocalDate.parse("2018-12-31"), employe.getDateDepart());
+		try {
+			Ligue ligue = gestionPersonnel.addLigue("ffsc");
+			Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", LocalDate.parse("2018-12-28"), LocalDate.parse("2018-12-30"));
+			employe.setDateDepart(LocalDate.parse("2018-12-31"));
+			assertEquals(LocalDate.parse("2018-12-31"), employe.getDateDepart());
+			employe.setDateDepart(null);
+			assertEquals(null, employe.getDateDepart());
+			employe.setDateDepart(LocalDate.parse("2018-12-27"));
+			fail("L'execption DateImpossible devrait être lance");
+		} catch (DateImpossible err) {
+			assertTrue(err instanceof DateImpossible);
+		}
 	}
 	
 	@Test
@@ -118,12 +126,20 @@ class testEmploye
 	}
 	
 	@Test
-	void setDateArrive() throws SauvegardeImpossible
+	void setDateArrive() throws SauvegardeImpossible, DateImpossible
 	{
-		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", LocalDate.parse("2018-12-28"), LocalDate.parse("2018-12-30"));
-		employe.setDateArrive(LocalDate.parse("2018-12-29"));
-		assertEquals(LocalDate.parse("2018-12-29"), employe.getDateArrive());
+		try {
+			Ligue ligue = gestionPersonnel.addLigue("ffsc");
+			Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", LocalDate.parse("2018-12-28"), LocalDate.parse("2018-12-30"));
+			employe.setDateArrive(LocalDate.parse("2018-12-29"));
+			assertEquals(LocalDate.parse("2018-12-29"), employe.getDateArrive());
+			employe.setDateArrive(null);
+			assertEquals(null, employe.getDateArrive());
+			employe.setDateArrive(LocalDate.parse("2018-12-31"));
+			fail("L'execption DateImpossible devrait être lance");
+		} catch (DateImpossible err) {
+			assertTrue(err instanceof DateImpossible);
+		}
 	}
 
 	@Test
