@@ -40,7 +40,7 @@ CREATE TABLE EMPLOYE(
 ```
 
 - [ ] Saisie des dates avec gestion des erreurs
-- [ ] Tout le monde a utilisé git
+- [x] Tout le monde a utilisé git
 - [ ] Sélection d'un employé avant de décider si le supprime ou le modifie
 - [ ] Changement de l'admin d'une ligne en ligne de commande
 
