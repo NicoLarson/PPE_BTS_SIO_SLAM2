@@ -14,7 +14,31 @@
 
 ## Itération 2
 
-- [ ] Script de création de tables
+- [x] Script de création de tables
+
+```sql
+CREATE DATABASE M2L;
+
+USE M2L;
+
+CREATE TABLE LIGUE(
+    id_ligue INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nom_ligue VARCHAR(32)
+);
+
+CREATE TABLE EMPLOYE(
+    id_emp INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nom_emp VARCHAR(32) NOT NULL,
+    prenom_emp VARCHAR(32) NOT NULL,
+    mail_emp VARCHAR(64),
+    password_emp VARCHAR(128) NOT NULL,
+    admin_ligue BOOLEAN DEFAULT FALSE,
+    super_adnmin BOOLEAN DEFAULT FALSE,
+    id_ligue int,
+    FOREIGN KEY (id_ligue) REFERENCES LIGUE(id_ligue)
+);
+```
+
 - [ ] Saisie des dates avec gestion des erreurs
 - [ ] Tout le monde a utilisé git
 - [ ] Sélection d'un employé avant de décider si le supprime ou le modifie
