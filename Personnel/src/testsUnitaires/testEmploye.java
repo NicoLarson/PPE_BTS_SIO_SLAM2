@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import personnel.*;
 
-class testEmploye 
+class testEmploye
 {
 	GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 

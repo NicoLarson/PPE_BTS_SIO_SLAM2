@@ -7,22 +7,22 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import personnel.*;
 
-class testLigue
+class testLigue implements Ligue
 {
 	GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 
 	@Test
 	void createLigue() throws SauvegardeImpossible
 	{
-		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
-		assertEquals("Fléchettes", ligue.getNom());
+		Ligue ligue = gestionPersonnel.addLigue("Flï¿½chettes");
+		assertEquals("Flï¿½chettes", ligue.getNom());
 	}
 
 	@Test
 	void addEmploye() throws SauvegardeImpossible
 	{
-		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
-		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty", null, null); 
+		Ligue ligue = gestionPersonnel.addLigue("Flï¿½chettes");
+		Employe employe = ligue.addEmploye("Bouchard", "Gï¿½rard", "g.bouchard@gmail.com", "azerty", null, null); 
 		assertEquals(employe, ligue.getEmployes().first());
 	}
 	
