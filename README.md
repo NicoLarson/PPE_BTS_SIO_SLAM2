@@ -14,10 +14,11 @@
 
 ## Itération 2
 
-- [ ] Création de la base de données.
-- [ ] Gestion des dates dans le dialogue en ligne de commande.
-- [ ] Dans le dialogue en ligne de commande, un employé doit être selectionné avant que l’on puisse choisir de modifier ou de supprimer.
-- [ ] Possibilité de changer l’administrateur d’une ligue en ligne de commande. 
+- [ ] Script de création de tables
+- [ ] Saisie des dates avec gestion des erreurs
+- [ ] Tout le monde a utilisé git
+- [ ] Sélection d'un employé avant de décider si le supprime ou le modifie
+- [ ] Changement de l'admin d'une ligne en ligne de commande
 
 ## Itération 3
 
