@@ -83,7 +83,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	
 	public void setAdministrateur(Employe administrateur)
 	{
-		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
+		Employe root = gestionPersonnel.getRoot();
 		if (administrateur != root && administrateur.getLigue() != this)
 			throw new DroitsInsuffisants();
 		this.administrateur = administrateur;
@@ -129,7 +129,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	
 	public void remove()
 	{
-		GestionPersonnel.getGestionPersonnel().remove(this);
+		gestionPersonnel.remove(this);
 	}
 
 	@Override
