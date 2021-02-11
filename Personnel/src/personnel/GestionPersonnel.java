@@ -23,7 +23,7 @@ public class GestionPersonnel implements Serializable
 	private Employe root = new Employe(this, null, "root", "", "", "toor", null, null);
 	public final static int SERIALIZATION = 1, JDBC = 2, 
 			TYPE_PASSERELLE = SERIALIZATION;  
-	private static Passerelle passerelle = TYPE_PASSERELLE == JDBC ? new jdbc.JDBC() : new serialisation.Serialization();	
+	private static Passerelle passerelle = TYPE_PASSERELLE != JDBC ? new jdbc.JDBC() : new serialisation.Serialization();	
 	
 	/**
 	 * Retourne l'unique instance de cette classe.
@@ -102,6 +102,10 @@ public class GestionPersonnel implements Serializable
 	int insert(Ligue ligue) throws SauvegardeImpossible
 	{
 		return passerelle.insert(ligue);
+	}
+	void insert(Employe employe) throws SauvegardeImpossible
+	{
+		passerelle.insert(employe);
 	}
 
 	/**

@@ -42,6 +42,8 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		administrateur = gestionPersonnel.getRoot();
 		this.id = id;
 	}
+	
+	
 
 	/**
 	 * Retourne le nom de la ligue.
@@ -113,7 +115,18 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateDepart, dateArrive);
 		employes.add(employe);
+		try {
+			this.gestionPersonnel.insert(employe);
+		} catch (SauvegardeImpossible e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return employe;
+	}
+	
+	public int getId()
+	{
+		return id;
 	}
 	
 	void remove(Employe employe)

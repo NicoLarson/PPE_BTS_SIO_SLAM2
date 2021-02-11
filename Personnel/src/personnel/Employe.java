@@ -29,6 +29,8 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.ligue = ligue;
 		this.dateArrive = dateArrive;
 		this.dateDepart = dateDepart;
+		
+		
 	}
 	
 	/**
@@ -114,6 +116,11 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setMail(String mail)
 	{
 		this.mail = mail;
+	}
+	
+	public String getHashedPass() 
+	{
+		return String.valueOf(password.hashCode());
 	}
 
 	/**
@@ -203,7 +210,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	@Override
 	public String toString()
 	{
-		String res = nom + " " + prenom + " " + mail + " (";
+		String res = nom + " " + prenom + " " + mail + " " + dateArrive + " (";
 		if (estRoot())
 			res += "super-utilisateur";
 		else

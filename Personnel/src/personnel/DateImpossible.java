@@ -2,9 +2,14 @@ package personnel;
 
 public class DateImpossible extends Exception
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public DateImpossible()
 	{
-		System.err.println("La date d'arrivée doit être inférieur à la date de départ");
+		System.err.println("La date d'arrivÃ©e doit Ãªtre infÃ©rieur Ã  la date de dÃ©part");
 	}
 }
 
