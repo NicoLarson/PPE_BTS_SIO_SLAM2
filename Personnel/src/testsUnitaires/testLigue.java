@@ -61,7 +61,7 @@ class testLigue //zimplements Ligue
 	void getAdmin() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		assertEquals("root   (super-utilisateur)", ligue.getAdministrateur().toString());
+		assertEquals("root   null (super-utilisateur)", ligue.getAdministrateur().toString());
 	}
 	
 	@Test

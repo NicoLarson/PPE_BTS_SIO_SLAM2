@@ -185,9 +185,9 @@ class testEmploye
 	void toStringEmploye() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("ffsc");
-		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", null, null);
+		Employe employe = ligue.addEmploye("Richards", "Nigel", "n.richards@mail.ru", "admin", LocalDate.parse("2020-12-25"), null);
 		Employe rootEmploye = gestionPersonnel.getRoot();
-		assertEquals("Richards Nigel n.richards@mail.ru (ffsc)", employe.toString());
-		assertEquals("root   (super-utilisateur)", rootEmploye.toString());
+		assertEquals("Richards Nigel n.richards@mail.ru 2020-12-25 (ffsc)", employe.toString());
+		assertEquals("root   null (super-utilisateur)", rootEmploye.toString());
 	}
 }
