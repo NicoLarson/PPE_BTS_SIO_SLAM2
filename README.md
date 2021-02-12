@@ -17,26 +17,30 @@
 - [x] Script de création de tables
 
 ```sql
-CREATE DATABASE M2L;
+CREATE DATABASE `M2L`;
 
-USE M2L;
+USE `M2L` ;
 
-CREATE TABLE LIGUE(
-    id_ligue INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nom_ligue VARCHAR(32)
+
+CREATE TABLE IF NOT EXISTS `M2L`.`LIGUE` (
+  `id_ligue` INT NOT NULL AUTO_INCREMENT,
+  `nom_ligue` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id_ligue`));
+
+CREATE TABLE IF NOT EXISTS `M2L`.`EMPLOYE` (
+  `id_emp` INT NOT NULL AUTO_INCREMENT,
+  `nom_emp` VARCHAR(45) NOT NULL,
+  `prenom_emp` VARCHAR(45) NOT NULL,
+  `mail_emp` VARCHAR(255) NOT NULL,
+  `password_emp` VARCHAR(255) NOT NULL,
+  `admin_ligue` BOOLEAN NULL,
+  `super_admin` BOOLEAN NULL,
+  `id_ligue` INT NULL,
+  PRIMARY KEY (`id_emp`, `id_ligue`),
+    FOREIGN KEY (`id_ligue`)
+    REFERENCES `M2L`.`LIGUE` (`id_ligue`)
 );
 
-CREATE TABLE EMPLOYE(
-    id_emp INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nom_emp VARCHAR(32) NOT NULL,
-    prenom_emp VARCHAR(32) NOT NULL,
-    mail_emp VARCHAR(64),
-    password_emp VARCHAR(128) NOT NULL,
-    admin_ligue BOOLEAN DEFAULT FALSE,
-    super_adnmin BOOLEAN DEFAULT FALSE,
-    id_ligue int,
-    FOREIGN KEY (id_ligue) REFERENCES LIGUE(id_ligue)
-);
 ```
 
 - [ ] Saisie des dates avec gestion des erreurs
