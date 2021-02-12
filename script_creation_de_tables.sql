@@ -17,7 +17,7 @@ CREATE TABLE EMPLOYE (
   admin_ligue BOOLEAN NULL,
   super_admin BOOLEAN NULL,
   id_ligue INT NULL,
-  PRIMARY KEY (id_emp, id_ligue),
+  PRIMARY KEY (id_emp),
     FOREIGN KEY (id_ligue)
     REFERENCES LIGUE (id_ligue)
 );
