@@ -2,7 +2,6 @@ CREATE DATABASE M2L;
 
 USE M2L;
 
-
 CREATE TABLE LIGUE (
   id_ligue INT AUTO_INCREMENT,
   nom_ligue VARCHAR(255) NOT NULL,
@@ -23,4 +22,3 @@ CREATE TABLE EMPLOYE (
     FOREIGN KEY (id_ligue)
     REFERENCES LIGUE (id_ligue)
 );
- 
