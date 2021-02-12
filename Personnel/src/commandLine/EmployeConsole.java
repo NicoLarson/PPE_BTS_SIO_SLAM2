@@ -68,11 +68,11 @@ public class EmployeConsole
 					dateArrive = LocalDate.parse(getString("Date arrive :"));
 					employe.setDateArrive(dateArrive);
 				}
-				catch (DateImpossible e) {
-					e.printStackTrace();
-				}
 				catch (DateTimeParseException e) {
 					System.out.println("Format incorrect");
+				}
+				catch (DateImpossible e) {
+					dateArrive = null;
 				}
 			}
 		});
@@ -85,13 +85,13 @@ public class EmployeConsole
 			while (dateDepart == null) {
 				try {
 					dateDepart = LocalDate.parse(getString("Date de départ :"));
-					employe.setDateArrive(dateDepart);
-				}
-				catch (DateImpossible e) {
-					e.printStackTrace();
+					employe.setDateDepart(dateDepart);
 				}
 				catch (DateTimeParseException e) {
 					System.out.println("Format incorrect");
+				}
+				catch (DateImpossible e) {
+					dateDepart = null;
 				}
 			}
 		});
