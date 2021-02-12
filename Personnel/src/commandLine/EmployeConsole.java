@@ -39,28 +39,27 @@ public class EmployeConsole
 
 	private Option changerNom(final Employe employe)
 	{
-		return new Option("Changer le nom", "n", 
-				() -> {employe.setNom(getString("Nouveau nom : "));}
-			);
+		return new Option("Changer le nom", "2", () -> {employe.setNom(isRequired("Nouveau nom : "));});
 	}
 	
 	private Option changerPrenom(final Employe employe)
 	{
-		return new Option("Changer le prénom", "p", () -> {employe.setPrenom(getString("Nouveau prénom : "));});
+		return new Option("Changer le prénom", "3", () -> {employe.setPrenom(isRequired("Nouveau prénom : "));});
 	}
 	
 	private Option changerMail(final Employe employe)
 	{
-		return new Option("Changer le mail", "e", () -> {employe.setMail(getString("Nouveau mail : "));});
+		return new Option("Changer le mail", "4", () -> {employe.setMail(isRequired("Nouveau mail : "));});
 	}
 	
 	private Option changerPassword(final Employe employe)
 	{
-		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
+		return new Option("Changer le password", "5", () -> {employe.setPassword(isRequired("Nouveau password : "));});
 	}
+
 	private Option changerDateArrive(final Employe employe)
 	{
-		return new Option("Changer la date d'arrivée", "y", () -> {
+		return new Option("Changer la date d'arrivée", "6", () -> {
 			LocalDate dateArrive = null;
 			
 			while (dateArrive == null) {
@@ -69,7 +68,7 @@ public class EmployeConsole
 					employe.setDateArrive(dateArrive);
 				}
 				catch (DateTimeParseException e) {
-					System.out.println("Format incorrect");
+					System.out.println("Date incorrect");
 				}
 				catch (DateImpossible e) {
 					dateArrive = null;
@@ -77,9 +76,10 @@ public class EmployeConsole
 			}
 		});
 	}
+
 	private Option changerDateDepart(final Employe employe)
 	{
-		return new Option("Changer la date de depart", "u", () -> {
+		return new Option("Changer la date de depart", "7", () -> {
 			LocalDate dateDepart = null;
 			
 			while (dateDepart == null) {
@@ -88,7 +88,7 @@ public class EmployeConsole
 					employe.setDateDepart(dateDepart);
 				}
 				catch (DateTimeParseException e) {
-					System.out.println("Format incorrect");
+					System.out.println("Date incorrect");
 				}
 				catch (DateImpossible e) {
 					dateDepart = null;
@@ -97,5 +97,12 @@ public class EmployeConsole
 		});
 	}
 	
-
+	protected static String isRequired(String message)
+	{
+		String value = "";
+		
+		while (value.length() == 0)
+			value = getString(message);
+		return value;
+	}
 }

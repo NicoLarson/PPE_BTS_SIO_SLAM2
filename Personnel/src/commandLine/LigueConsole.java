@@ -52,12 +52,8 @@ public class LigueConsole
 	private Option afficherEmployes(final Ligue ligue)
 	{
 		return new Option("Afficher les employes", "l", () -> { 
-			SortedSet<Employe> set = ligue.getEmployes();
-			
-			for (Employe x: set) {
+			for (Employe x: ligue.getEmployes())
 				System.out.println(x);
-			}
-			
 		});
 	}
 
@@ -106,10 +102,10 @@ public class LigueConsole
 		return new Option("ajouter un employé", "a",
 				() -> 
 				{
-					String nom = getString("nom : "),
-					prenom = getString("Prenom : "),
-					mail = getString("Mail : "),
-					password = getString("Password : ");
+					String nom = EmployeConsole.isRequired("nom : "),
+					prenom = EmployeConsole.isRequired("Prenom : "),
+					mail = EmployeConsole.isRequired("Mail : "),
+					password = EmployeConsole.isRequired("Password : ");
 					LocalDate dateArrive = null;
 					
 					while (dateArrive == null) {
@@ -124,9 +120,7 @@ public class LigueConsole
 							System.out.println("Date incorect");
 						}
 					}
-							
 					ligue.addEmploye(nom, prenom, mail, password, dateArrive, null);
-					
 				}
 		);
 	}
@@ -171,5 +165,4 @@ public class LigueConsole
 	{
 		return new Option("Supprimer", "d", () -> {ligue.remove();});
 	}
-	
 }
