@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `M2L`.`EMPLOYE` (
 - [ ] Saisie des dates avec gestion des erreurs
 - [x] Tout le monde a utilisé git
 - [ ] Sélection d'un employé avant de décider si le supprime ou le modifie
-- [ ] Changement de l'admin d'une ligne en ligne de commande
+- [ ] Changement de l'admin d'une ligue en ligne de commande
 
 ## Itération 3
 
