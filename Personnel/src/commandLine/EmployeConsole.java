@@ -2,9 +2,13 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
+import personnel.DateImpossible;
 import personnel.Employe;
 
 public class EmployeConsole 
@@ -27,6 +31,8 @@ public class EmployeConsole
 			menu.add(changerPrenom(employe));
 			menu.add(changerMail(employe));
 			menu.add(changerPassword(employe));
+			menu.add(changerDateArrive(employe));
+			menu.add(changerDateDepart(employe));
 			menu.addBack("q");
 			return menu;
 	}
@@ -51,6 +57,44 @@ public class EmployeConsole
 	private Option changerPassword(final Employe employe)
 	{
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
+	}
+	private Option changerDateArrive(final Employe employe)
+	{
+		return new Option("Changer la date d'arrivée", "y", () -> {
+			LocalDate dateArrive = null;
+			
+			while (dateArrive == null) {
+				try {
+					dateArrive = LocalDate.parse(getString("Date arrive :"));
+					employe.setDateArrive(dateArrive);
+				}
+				catch (DateImpossible e) {
+					e.printStackTrace();
+				}
+				catch (DateTimeParseException e) {
+					System.out.println("Format incorrect");
+				}
+			}
+		});
+	}
+	private Option changerDateDepart(final Employe employe)
+	{
+		return new Option("Changer la date de depart", "u", () -> {
+			LocalDate dateDepart = null;
+			
+			while (dateDepart == null) {
+				try {
+					dateDepart = LocalDate.parse(getString("Date de départ :"));
+					employe.setDateArrive(dateDepart);
+				}
+				catch (DateImpossible e) {
+					e.printStackTrace();
+				}
+				catch (DateTimeParseException e) {
+					System.out.println("Format incorrect");
+				}
+			}
+		});
 	}
 	
 

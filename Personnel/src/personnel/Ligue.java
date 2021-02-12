@@ -98,6 +98,11 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	
 	public SortedSet<Employe> getEmployes()
 	{
+		/*for(int i = 0; i < employes.size(); i++) {
+			System.out.println(employes.get(i));
+		}*/
+		
+		
 		return Collections.unmodifiableSortedSet(employes);
 	}
 

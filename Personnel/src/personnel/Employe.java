@@ -1,7 +1,10 @@
 package personnel;
 
+import static commandLineMenus.rendering.examples.util.InOut.getString;
+
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Employé d'une ligue hébergée par la M2L. Certains peuvent 
@@ -144,7 +147,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	}
 
 	public void setDateArrive(LocalDate dateArrive) throws DateImpossible
-	{		
+	{
 		if (dateArrive != null && dateDepart != null && dateDepart.isBefore(dateArrive))
 			throw new DateImpossible();
 		this.dateArrive = dateArrive;
@@ -213,8 +216,12 @@ public class Employe implements Serializable, Comparable<Employe>
 		String res = nom + " " + prenom + " " + mail + " " + dateArrive + " (";
 		if (estRoot())
 			res += "super-utilisateur";
-		else
+		else {
 			res += ligue.toString();
+			if (this == ligue.getAdministrateur()) {
+				res += " admin";
+			}
+		}
 		return res + ")";
 	}
 }
