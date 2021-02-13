@@ -13,9 +13,9 @@ import personnel.Employe;
 
 public class EmployeConsole 
 {
-	private Option afficher(final Employe employe)
+	private Option afficher(final Employe employe, String key)
 	{
-		return new Option("Afficher l'employé", "l", () -> {System.out.println(employe);});
+		return new Option("Afficher l'employé", key, () -> {System.out.println(employe);});
 	}
 
 	ListOption<Employe> editerEmploye()
@@ -25,41 +25,41 @@ public class EmployeConsole
 
 	Option editerEmploye(Employe employe)
 	{
-			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
-			menu.add(afficher(employe));
-			menu.add(changerNom(employe));
-			menu.add(changerPrenom(employe));
-			menu.add(changerMail(employe));
-			menu.add(changerPassword(employe));
-			menu.add(changerDateArrive(employe));
-			menu.add(changerDateDepart(employe));
+			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "1");
+			menu.add(afficher(employe, "1"));
+			menu.add(changerNom(employe, "2"));
+			menu.add(changerPrenom(employe, "3"));
+			menu.add(changerMail(employe, "4"));
+			menu.add(changerPassword(employe, "5"));
+			menu.add(changerDateArrive(employe, "6"));
+			menu.add(changerDateDepart(employe, "7"));
 			menu.addBack("q");
 			return menu;
 	}
 
-	private Option changerNom(final Employe employe)
+	private Option changerNom(final Employe employe, String key)
 	{
-		return new Option("Changer le nom", "2", () -> {employe.setNom(isRequired("Nouveau nom : "));});
+		return new Option("Changer le nom", key, () -> {employe.setNom(isRequired("Nouveau nom : "));});
 	}
 	
-	private Option changerPrenom(final Employe employe)
+	private Option changerPrenom(final Employe employe, String key)
 	{
-		return new Option("Changer le prénom", "3", () -> {employe.setPrenom(isRequired("Nouveau prénom : "));});
+		return new Option("Changer le prénom", key, () -> {employe.setPrenom(isRequired("Nouveau prénom : "));});
 	}
 	
-	private Option changerMail(final Employe employe)
+	private Option changerMail(final Employe employe, String key)
 	{
-		return new Option("Changer le mail", "4", () -> {employe.setMail(isRequired("Nouveau mail : "));});
+		return new Option("Changer le mail", key, () -> {employe.setMail(isRequired("Nouveau mail : "));});
 	}
 	
-	private Option changerPassword(final Employe employe)
+	private Option changerPassword(final Employe employe, String key)
 	{
-		return new Option("Changer le password", "5", () -> {employe.setPassword(isRequired("Nouveau password : "));});
+		return new Option("Changer le password", key, () -> {employe.setPassword(isRequired("Nouveau password : "));});
 	}
 
-	private Option changerDateArrive(final Employe employe)
+	private Option changerDateArrive(final Employe employe, String key)
 	{
-		return new Option("Changer la date d'arrivée", "6", () -> {
+		return new Option("Changer la date d'arrivée", key, () -> {
 			LocalDate dateArrive = null;
 			
 			while (dateArrive == null) {
@@ -77,9 +77,9 @@ public class EmployeConsole
 		});
 	}
 
-	private Option changerDateDepart(final Employe employe)
+	private Option changerDateDepart(final Employe employe, String key)
 	{
-		return new Option("Changer la date de depart", "7", () -> {
+		return new Option("Changer la date de depart", key, () -> {
 			LocalDate dateDepart = null;
 			
 			while (dateDepart == null) {

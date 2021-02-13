@@ -34,15 +34,15 @@ public class PersonnelConsole
 	private Menu menuQuitter()
 	{
 		Menu menu = new Menu("Quitter", "q");
-		menu.add(quitterEtEnregistrer());
-		menu.add(quitterSansEnregistrer());
-		menu.addBack("r");
+		menu.add(quitterEtEnregistrer("1"));
+		menu.add(quitterSansEnregistrer("2"));
+		menu.addBack("q");
 		return menu;
 	}
 	
-	private Option quitterEtEnregistrer()
+	private Option quitterEtEnregistrer(String key)
 	{
-		return new Option("Quitter et enregistrer", "q", 
+		return new Option("Quitter et enregistrer", key, 
 				() -> 
 				{
 					try
@@ -58,9 +58,9 @@ public class PersonnelConsole
 			);
 	}
 	
-	private Option quitterSansEnregistrer()
+	private Option quitterSansEnregistrer(String key)
 	{
-		return new Option("Quitter sans enregistrer", "a", Action.QUIT);
+		return new Option("Quitter sans enregistrer", key, Action.QUIT);
 	}
 	
 	private boolean verifiePassword()

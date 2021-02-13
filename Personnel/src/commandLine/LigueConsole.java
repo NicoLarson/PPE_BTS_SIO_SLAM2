@@ -25,22 +25,22 @@ public class LigueConsole
 
 	Menu menuLigues()
 	{
-		Menu menu = new Menu("Gérer les ligues", "l");
-		menu.add(afficherLigues());
-		menu.add(ajouterLigue());
-		menu.add(selectionnerLigue());
+		Menu menu = new Menu("Gérer les ligues", "2");
+		menu.add(afficherLigues("1"));
+		menu.add(ajouterLigue("2"));
+		menu.add(selectionnerLigue("3"));
 		menu.addBack("q");
 		return menu;
 	}
 
-	private Option afficherLigues()
+	private Option afficherLigues(String key)
 	{
-		return new Option("Afficher les ligues", "l", () -> {System.out.println(gestionPersonnel.getLigues());});
+		return new Option("Afficher les ligues", key, () -> {System.out.println(gestionPersonnel.getLigues());});
 	}
 
-	private Option afficher(final Ligue ligue)
+	private Option afficher(final Ligue ligue, String key)
 	{
-		return new Option("Afficher la ligue", "l", 
+		return new Option("Afficher la ligue", key, 
 				() -> 
 				{
 					System.out.println(ligue);
@@ -48,17 +48,17 @@ public class LigueConsole
 				}
 		);
 	}
-	private Option afficherEmployes(final Ligue ligue)
+	private Option afficherEmployes(final Ligue ligue, String key)
 	{
-		return new Option("Afficher les employes", "l", () -> { 
+		return new Option("Afficher les employes", key, () -> { 
 			for (Employe x: ligue.getEmployes())
 				System.out.println(x);
 		});
 	}
 
-	private Option ajouterLigue()
+	private Option ajouterLigue(String key)
 	{
-		return new Option("Ajouter une ligue", "a", () -> 
+		return new Option("Ajouter une ligue", key, () -> 
 		{
 			try
 			{
@@ -74,31 +74,32 @@ public class LigueConsole
 	private Menu editerLigue(Ligue ligue)
 	{
 		Menu menu = new Menu("Editer " + ligue.getNom());
-		menu.add(afficher(ligue));
-		menu.add(gererEmployes(ligue));
-		menu.add(changerNom(ligue));
-		menu.add(supprimer(ligue));
+		menu.add(afficher(ligue, "1"));
+		menu.add(gererEmployes(ligue, "2"));
+		menu.add(changerNom(ligue, "3"));
+		menu.add(supprimer(ligue, "4"));
 		menu.addBack("q");
 		return menu;
 	}
 
-	private Option changerNom(final Ligue ligue)
+	private Option changerNom(final Ligue ligue, String key)
 	{
-		return new Option("Renommer", "r", 
+		return new Option("Renommer", key, 
 				() -> {ligue.setNom(getString("Nouveau nom : "));});
 	}
 
-	private List<Ligue> selectionnerLigue()
+	private List<Ligue> selectionnerLigue(String key)
 	{
-		return new List<Ligue>("Sélectionner une ligue", "e", 
+		List<Ligue> liste = new List<Ligue>("Sélectionner une ligue", key, 
 				() -> new ArrayList<>(gestionPersonnel.getLigues()),
-				(element) -> editerLigue(element)
-				);
+				(element) -> editerLigue(element));
+		liste.addBack("q");
+		return liste;
 	}
 	
-	private Option ajouterEmploye(final Ligue ligue)
+	private Option ajouterEmploye(final Ligue ligue, String key)
 	{
-		return new Option("Ajouter un employé", "a",
+		return new Option("Ajouter un employé", key,
 				() -> 
 				{
 					String nom = EmployeConsole.isRequired("nom : "),
@@ -124,44 +125,49 @@ public class LigueConsole
 		);
 	}
 	
-	private Menu gererEmployes(Ligue ligue)
+	private Menu gererEmployes(Ligue ligue, String key)
 	{
-		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
-		menu.add(afficherEmployes(ligue));
-		menu.add(ajouterEmploye(ligue));
-		menu.add(modifierEmploye(ligue));
-		menu.add(changerAdministrateur(ligue));
-		menu.add(supprimerEmploye(ligue));
+		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), key);
+		menu.add(afficherEmployes(ligue, "1"));
+		menu.add(ajouterEmploye(ligue, "2"));
+		menu.add(modifierEmploye(ligue, "3"));
+		menu.add(changerAdministrateur(ligue, "4"));
+		menu.add(supprimerEmploye(ligue, "5"));
 		menu.addBack("q");
 		return menu;
 	}
 
-	private List<Employe> supprimerEmploye(final Ligue ligue) 
+
+	private List<Employe> supprimerEmploye(final Ligue ligue, String key)
+
 	{
-		return new List<>("Supprimer un employé", "s", 
+		List<Employe> liste =  new List<>("Supprimer un employé", key, 
 				() -> new ArrayList<>(ligue.getEmployes()),
-				(index, element) -> {element.remove();}
-				);
+				(index, element) -> {element.remove();});
+		liste.addBack("q");
+		return liste;
 	}
 	
-	private List<Employe> changerAdministrateur(final Ligue ligue)
+	private List<Employe> changerAdministrateur(final Ligue ligue, String key)
 	{
-		return new List<>("Changer Administrateur", "h", 
+		List<Employe> liste = new List<>("Changer Administrateur", key, 
 				() -> new ArrayList<>(ligue.getEmployes()),
-				(index, element) -> {ligue.setAdministrateur(element);}
-				);
+				(index, element) -> {ligue.setAdministrateur(element);});
+		liste.addBack("q");
+		return liste;
 	}		
 
-	private List<Employe> modifierEmploye(final Ligue ligue)
+	private List<Employe> modifierEmploye(final Ligue ligue, String key)
 	{
-		return new List<>("Modifier un employé", "e", 
+		List<Employe> liste = new List<>("Modifier un employé", key, 
 				() -> new ArrayList<>(ligue.getEmployes()),
-				employeConsole.editerEmploye()
-				);
+				employeConsole.editerEmploye());
+		liste.addBack("q");
+		return liste;
 	}
 	
-	private Option supprimer(Ligue ligue)
+	private Option supprimer(Ligue ligue, String key)
 	{
-		return new Option("Supprimer", "d", () -> {ligue.remove();});
+		return new Option("Supprimer", key, () -> {ligue.remove();});
 	}
 }
