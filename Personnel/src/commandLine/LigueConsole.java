@@ -98,7 +98,7 @@ public class LigueConsole
 	
 	private Option ajouterEmploye(final Ligue ligue)
 	{
-		return new Option("ajouter un employé", "a",
+		return new Option("Ajouter un employé", "a",
 				() -> 
 				{
 					String nom = EmployeConsole.isRequired("nom : "),
@@ -146,7 +146,7 @@ public class LigueConsole
 	
 	private List<Employe> changerAdministrateur(final Ligue ligue)
 	{
-		return new List<>("changer Administrateur", "h", 
+		return new List<>("Changer Administrateur", "h", 
 				() -> new ArrayList<>(ligue.getEmployes()),
 				(index, element) -> {ligue.setAdministrateur(element);}
 				);
