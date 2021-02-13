@@ -103,9 +103,17 @@ public class GestionPersonnel implements Serializable
 	{
 		return passerelle.insert(ligue);
 	}
-	void insert(Employe employe) throws SauvegardeImpossible
+	int insert(Employe employe) throws SauvegardeImpossible
 	{
-		passerelle.insert(employe);
+		return passerelle.insert(employe);
+	}
+	void update(Ligue ligue) throws SauvegardeImpossible
+	{
+		passerelle.updateLigue(ligue);
+	}
+	void update(Employe employe) throws SauvegardeImpossible
+	{
+		passerelle.updateEmploye(employe);
 	}
 
 	/**
@@ -116,5 +124,23 @@ public class GestionPersonnel implements Serializable
 	public Employe getRoot()
 	{
 		return root;
+	}
+	void delete(Employe employe)
+	{
+		try {
+			passerelle.deleteEmploye(employe);
+		} catch (SauvegardeImpossible e) {
+			
+			e.printStackTrace();
+		}
+	}
+	void delete(Ligue ligue)
+	{
+		try {
+			passerelle.deleteLigue(ligue);
+		} catch (SauvegardeImpossible e) {
+			
+			e.printStackTrace();
+		}
 	}
 }

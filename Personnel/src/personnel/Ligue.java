@@ -6,7 +6,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.time.LocalDate;
 
-/**
+/*
  * Représente une ligue. Chaque ligue est reliée à une liste
  * d'employés dont un administrateur. Comme il n'est pas possible
  * de créer un employé sans l'affecter à une ligue, le root est 
@@ -106,8 +106,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		return Collections.unmodifiableSortedSet(employes);
 	}
 
-	/**
-	 * Ajoute un employé dans la ligue. Cette méthode 
+	/** Ajoute un employé dans la ligue. Cette méthode 
 	 * est le seul moyen de créer un employé.
 	 * @param nom le nom de l'employé.
 	 * @param prenom le prénom de l'employé.
@@ -115,13 +114,14 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * @param password le password de l'employé.
 	 * @return l'employé créé. 
 	 */
+	 
 
 	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateDepart, LocalDate dateArrive)
 	{
 		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateDepart, dateArrive);
 		employes.add(employe);
 		try {
-			this.gestionPersonnel.insert(employe);
+			this.id = this.gestionPersonnel.insert(employe);
 		} catch (SauvegardeImpossible e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -161,4 +161,5 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		return nom;
 	}
+	
 }

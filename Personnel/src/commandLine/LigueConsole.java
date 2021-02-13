@@ -136,7 +136,7 @@ public class LigueConsole
 		return menu;
 	}
 
-	private List<Employe> supprimerEmploye(final Ligue ligue)
+	private List<Employe> supprimerEmploye(final Ligue ligue) 
 	{
 		return new List<>("Supprimer un employé", "s", 
 				() -> new ArrayList<>(ligue.getEmployes()),
