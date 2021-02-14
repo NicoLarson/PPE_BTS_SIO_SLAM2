@@ -6,7 +6,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.time.LocalDate;
 
-/*
+/**
  * Représente une ligue. Chaque ligue est reliée à une liste
  * d'employés dont un administrateur. Comme il n'est pas possible
  * de créer un employé sans l'affecter à une ligue, le root est 
@@ -121,11 +121,18 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateDepart, dateArrive);
 		employes.add(employe);
 		try {
-			this.id = this.gestionPersonnel.insert(employe);
+			employe.setId(gestionPersonnel.insert(employe));
 		} catch (SauvegardeImpossible e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
+		return employe;
+	}
+	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrive, LocalDate dateDepart, int id)
+	{
+		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateDepart, dateArrive);
+		employe.setId(id);
+		employes.add(employe);
 		return employe;
 	}
 	
@@ -149,6 +156,15 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		gestionPersonnel.remove(this);
 	}
+	public void update()
+	{
+		try {
+			gestionPersonnel.update(this);
+		} catch (SauvegardeImpossible e) {
+			
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public int compareTo(Ligue autre)
@@ -161,5 +177,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		return nom;
 	}
+	
 	
 }

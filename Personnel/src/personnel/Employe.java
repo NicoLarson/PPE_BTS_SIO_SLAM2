@@ -34,6 +34,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		
 		
 		
+		
 	}
 	
 	/**
@@ -121,9 +122,9 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.mail = mail;
 	}
 	
-	public String getHashedPass() 
+	public String getPass() 
 	{
-		return String.valueOf(password.hashCode());
+		return password;
 	}
 
 	/**
@@ -233,6 +234,15 @@ public class Employe implements Serializable, Comparable<Employe>
 	public int getId()
 	{
 		return id;
+	}
+	public void update(String query)
+	{
+		try {
+			gestionPersonnel.update(this, query);
+		} catch (SauvegardeImpossible e) {
+			
+			e.printStackTrace();
+		}
 	}
 	
 }
