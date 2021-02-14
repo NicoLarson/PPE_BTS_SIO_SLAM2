@@ -51,6 +51,10 @@ public class LigueConsole
 	private Option afficherEmployes(final Ligue ligue, String key)
 	{
 		return new Option("Afficher les employes", key, () -> { 
+			if(ligue.getEmployes().size() == 0)
+			{
+				System.out.println("Ligue vide");
+			}
 			for (Employe x: ligue.getEmployes())
 				System.out.println(x);
 		});
@@ -85,7 +89,10 @@ public class LigueConsole
 	private Option changerNom(final Ligue ligue, String key)
 	{
 		return new Option("Renommer", key, 
-				() -> {ligue.setNom(getString("Nouveau nom : "));});
+				() -> {
+					ligue.setNom(getString("Nouveau nom : "));
+					ligue.update();
+					});
 	}
 
 	private List<Ligue> selectionnerLigue(String key)
@@ -112,7 +119,7 @@ public class LigueConsole
 						try {
 							String date = getString("Date d'arrivé : ");
 
-							if (date.length() == 0)
+							if (date.equals(""))
 								dateArrive = LocalDate.now();
 							else
 								dateArrive = LocalDate.parse(date);
@@ -137,7 +144,9 @@ public class LigueConsole
 		return menu;
 	}
 
+
 	private List<Employe> supprimerEmploye(final Ligue ligue, String key)
+
 	{
 		List<Employe> liste =  new List<>("Supprimer un employé", key, 
 				() -> new ArrayList<>(ligue.getEmployes()),

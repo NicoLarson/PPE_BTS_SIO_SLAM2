@@ -34,27 +34,43 @@ public class EmployeConsole
 			menu.add(changerDateArrive(employe, "6"));
 			menu.add(changerDateDepart(employe, "7"));
 			menu.addBack("q");
+			
 			return menu;
 	}
 
 	private Option changerNom(final Employe employe, String key)
 	{
-		return new Option("Changer le nom", key, () -> {employe.setNom(isRequired("Nouveau nom : "));});
+		return new Option("Changer le nom", key, () -> 
+		{
+			employe.setNom(isRequired("Nouveau nom : "));
+			employe.update("nom");
+		});
 	}
 	
 	private Option changerPrenom(final Employe employe, String key)
 	{
-		return new Option("Changer le prénom", key, () -> {employe.setPrenom(isRequired("Nouveau prénom : "));});
+		return new Option("Changer le prénom", key, () -> 
+		{	employe.setPrenom(isRequired("Nouveau prénom : "));
+			employe.update("prenom");
+		});
 	}
 	
 	private Option changerMail(final Employe employe, String key)
 	{
-		return new Option("Changer le mail", key, () -> {employe.setMail(isRequired("Nouveau mail : "));});
+		return new Option("Changer le mail", key, () -> 
+		{
+			employe.setMail(isRequired("Nouveau mail : "));
+			employe.update("mail");
+		});
 	}
 	
 	private Option changerPassword(final Employe employe, String key)
 	{
-		return new Option("Changer le password", key, () -> {employe.setPassword(isRequired("Nouveau password : "));});
+		return new Option("Changer le password", key, () -> 
+		{
+			employe.setPassword(isRequired("Nouveau password : "));
+			employe.update("password");
+		});
 	}
 
 	private Option changerDateArrive(final Employe employe, String key)
@@ -66,6 +82,7 @@ public class EmployeConsole
 				try {
 					dateArrive = LocalDate.parse(getString("Date arrive :"));
 					employe.setDateArrive(dateArrive);
+					employe.update("arrive");
 				}
 				catch (DateTimeParseException e) {
 					System.out.println("Date incorrect");
@@ -86,6 +103,7 @@ public class EmployeConsole
 				try {
 					dateDepart = LocalDate.parse(getString("Date de départ :"));
 					employe.setDateDepart(dateDepart);
+					employe.update("depart");
 				}
 				catch (DateTimeParseException e) {
 					System.out.println("Date incorrect");

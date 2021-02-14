@@ -106,8 +106,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		return Collections.unmodifiableSortedSet(employes);
 	}
 
-	/**
-	 * Ajoute un employé dans la ligue. Cette méthode 
+	/** Ajoute un employé dans la ligue. Cette méthode 
 	 * est le seul moyen de créer un employé.
 	 * @param nom le nom de l'employé.
 	 * @param prenom le prénom de l'employé.
@@ -115,17 +114,25 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * @param password le password de l'employé.
 	 * @return l'employé créé. 
 	 */
+	 
 
 	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateDepart, LocalDate dateArrive)
 	{
 		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateDepart, dateArrive);
 		employes.add(employe);
 		try {
-			this.gestionPersonnel.insert(employe);
+			employe.setId(gestionPersonnel.insert(employe));
 		} catch (SauvegardeImpossible e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
+		return employe;
+	}
+	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrive, LocalDate dateDepart, int id)
+	{
+		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateDepart, dateArrive);
+		employe.setId(id);
+		employes.add(employe);
 		return employe;
 	}
 	
@@ -149,6 +156,15 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		gestionPersonnel.remove(this);
 	}
+	public void update()
+	{
+		try {
+			gestionPersonnel.update(this);
+		} catch (SauvegardeImpossible e) {
+			
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public int compareTo(Ligue autre)
@@ -161,4 +177,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		return nom;
 	}
+	
+	
 }
