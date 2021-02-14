@@ -49,27 +49,21 @@ public class JDBC implements Passerelle
 				String req = "SELECT * FROM employe WHERE id_ligue = ";
 				req += ligue.getId();
 				Statement instr = connection.createStatement();
-				ResultSet emp = instr.executeQuery(requete);
+				ResultSet emp = instr.executeQuery(req);
+		
 				
-				
-				ResultSetMetaData rsmd = emp.getMetaData();
-				int fin = rsmd.getColumnCount();
-				while(emp.next())
+				while (emp.next())
 				{
-					System.out.println(emp.getString(1)+"\n"+emp.getString(2)+"\n");
-				    
-				}
-				
-				/*while (emp.next())
-				{
+					
 					int id = emp.getInt("id_emp");
 					String nom = emp.getString("nom_emp"), prenom = emp.getString("prenom_emp"), mail = emp.getString("mail_emp"), psw = emp.getString("password_emp");
-					LocalDate arrive = LocalDate.parse(emp.getString("date_arrive")), depart = LocalDate.parse(emp.getString("date_depart"));
+					LocalDate arrive = LocalDate.parse(emp.getString("date_arrive")), depart = (emp.getString("date_depart") != null) ? LocalDate.parse(emp.getString("date_depart")) : null;
 					boolean admin = (1 == emp.getInt("admin_ligue"));
 					Employe employe = ligue.addEmploye(nom, prenom, mail, psw, arrive, depart, id);
 					if (admin)
 						ligue.setAdministrateur(employe);
-				}*/
+					System.out.println(employe);
+				}
 			}
 		}
 		catch (SQLException e)
