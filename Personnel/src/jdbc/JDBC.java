@@ -168,7 +168,6 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			
 			e.printStackTrace();
 			throw new SauvegardeImpossible(e);
 		}
@@ -190,7 +189,6 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			
 			e.printStackTrace();
 			throw new SauvegardeImpossible(e);
 		}
@@ -214,7 +212,6 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			
 			e.printStackTrace();
 			throw new SauvegardeImpossible(e);
 		}
@@ -246,7 +243,6 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			
 			e.printStackTrace();
 			throw new SauvegardeImpossible(e);
 		}
@@ -257,22 +253,15 @@ public class JDBC implements Passerelle
 	@Override
 	public void newAdmin(Employe employe) throws SauvegardeImpossible 
 	{
-		
 		try 
 		{
-			PreparedStatement firstInstruction, secondInstruction;
-			
-			firstInstruction = connection.prepareStatement("UPDATE employe SET admin_ligue = 0 WHERE admin_ligue = 1 AND id_ligue = ?");
-			firstInstruction.setInt(1, employe.getLigue().getId());
-			firstInstruction.executeUpdate();
-			
-			
-			secondInstruction = connection.prepareStatement("UPDATE employe SET admin_ligue = 1 WHERE id_emp = ?");
-			secondInstruction.setInt(1, employe.getId());
-			secondInstruction.executeUpdate();
-			
+			PreparedStatement tableEmploye;
+			tableEmploye = connection.prepareStatement("UPDATE employe SET admin_ligue = (CASE WHEN id_emp = ? THEN 1 WHEN id_emp <> ? THEN 0 END) WHERE id_ligue = ?");
+			tableEmploye.setInt(1, employe.getId());
+			tableEmploye.setInt(2, employe.getId());
+			tableEmploye.setInt(3, employe.getLigue().getId());
+			tableEmploye.executeUpdate();
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
 			throw new SauvegardeImpossible(e);
 		}
