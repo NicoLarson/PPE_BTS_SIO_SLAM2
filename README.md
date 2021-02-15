@@ -39,7 +39,7 @@ CREATE TABLE EMPLOYE (
   id_ligue INT NULL,
   PRIMARY KEY (id_emp),
     FOREIGN KEY (id_ligue)
-    REFERENCES LIGUE (id_ligue)
+    REFERENCES LIGUE (id_ligue) ON DELETE CASCADE
 );
 
 ```
