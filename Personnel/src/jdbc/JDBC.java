@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.Map;
 
 import personnel.*;
 
@@ -139,13 +140,11 @@ public class JDBC implements Passerelle
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();
 			return id.getInt(1);
-			
 		}
 		catch (SQLException exception)
 		{
 			exception.printStackTrace();
 			throw new SauvegardeImpossible(exception);
-		
 		}
 	}
 	/**
@@ -182,7 +181,7 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("DELETE FROM employe WHERE id_emp = ? LIMIT 1");
+			instruction = connection.prepareStatement("DELETE FROM employe WHERE id_emp = ?");
 			instruction.setInt(1, emp.getId());
 			instruction.executeUpdate();
 			System.out.println("Employé " + emp.getNom() + " supprimé");
@@ -216,27 +215,24 @@ public class JDBC implements Passerelle
 	}
 
 	@Override
-	public void updateEmploye(Employe emp, String query) throws SauvegardeImpossible 
+	public void updateEmploye(Employe emp, String column) throws SauvegardeImpossible 
 	{
 		try {
 			PreparedStatement instruction;
-			String requete = "UPDATE employe SET ";
-			switch(query)
-			{
-				case "nom": requete += "nom_emp = '" + emp.getNom();break;
-				case "prenom": requete += "prenom_emp = '" + emp.getPrenom();break;
-				case "mail": requete += "nom_emp = '" + emp.getMail();break;
-				case "password": requete += "password_emp = '" + emp.getPass();break;
-				case "arrive": requete += "date_arrive = '" + emp.getDateArrive();break;
-				case "depart": requete += "date_depart = '" + emp.getDateDepart();break;
-				default: break;
-				
-			}
-			requete += "' WHERE id_emp = " + emp.getId() + " LIMIT 1";
-			
-			instruction = connection.prepareStatement(requete);
+			instruction = connection.prepareStatement("UPDATE employe SET " + column + "= ? WHERE id_emp = ?");
+	
+			Map <String, String> map = Map.of(
+					"nom_emp", emp.getNom(),
+					"prenom_emp", emp.getPrenom(),
+					"mail_emp", emp.getMail(),
+					"password_emp", emp.getPass(),
+					"date_arrive", String.valueOf(emp.getDateArrive()),
+					"date_depart", String.valueOf(emp.getDateDepart())
+			);
+
+			instruction.setString(1, map.get(column));
+			instruction.setInt(2, emp.getId());
 			instruction.executeUpdate();
-			
 		}
 		catch (SQLException e) 
 		{
@@ -260,8 +256,6 @@ public class JDBC implements Passerelle
 			e.printStackTrace();
 			throw new SauvegardeImpossible(e);
 		}
-		
 	}
-
 }
 

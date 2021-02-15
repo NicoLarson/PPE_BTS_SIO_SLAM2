@@ -162,7 +162,6 @@ public class LigueConsole
 				(index, element) -> {
 					ligue.setAdministrateur(element);
 					ligue.changeAdmin(element);
-					
 				});
 		liste.addBack("q");
 		return liste;

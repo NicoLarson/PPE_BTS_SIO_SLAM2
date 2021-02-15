@@ -43,7 +43,7 @@ public class EmployeConsole
 		return new Option("Changer le nom", key, () -> 
 		{
 			employe.setNom(isRequired("Nouveau nom : "));
-			employe.update("nom");
+			employe.update("nom_emp");
 		});
 	}
 	
@@ -51,7 +51,7 @@ public class EmployeConsole
 	{
 		return new Option("Changer le prénom", key, () -> 
 		{	employe.setPrenom(isRequired("Nouveau prénom : "));
-			employe.update("prenom");
+			employe.update("prenom_emp");
 		});
 	}
 	
@@ -60,7 +60,7 @@ public class EmployeConsole
 		return new Option("Changer le mail", key, () -> 
 		{
 			employe.setMail(isRequired("Nouveau mail : "));
-			employe.update("mail");
+			employe.update("mail_emp");
 		});
 	}
 	
@@ -69,7 +69,7 @@ public class EmployeConsole
 		return new Option("Changer le password", key, () -> 
 		{
 			employe.setPassword(isRequired("Nouveau password : "));
-			employe.update("password");
+			employe.update("password_emp");
 		});
 	}
 
@@ -82,7 +82,7 @@ public class EmployeConsole
 				try {
 					dateArrive = LocalDate.parse(getString("Date arrive :"));
 					employe.setDateArrive(dateArrive);
-					employe.update("arrive");
+					employe.update("date_arrive");
 				}
 				catch (DateTimeParseException e) {
 					System.out.println("Date incorrect");
@@ -103,7 +103,7 @@ public class EmployeConsole
 				try {
 					dateDepart = LocalDate.parse(getString("Date de départ :"));
 					employe.setDateDepart(dateDepart);
-					employe.update("depart");
+					employe.update("date_depart");
 				}
 				catch (DateTimeParseException e) {
 					System.out.println("Date incorrect");

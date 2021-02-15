@@ -30,11 +30,6 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.ligue = ligue;
 		this.dateArrive = dateArrive;
 		this.dateDepart = dateDepart;
-		
-		
-		
-		
-		
 	}
 	
 	/**
@@ -235,10 +230,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	{
 		return id;
 	}
-	public void update(String query)
+	public void update(String column)
 	{
 		try {
-			gestionPersonnel.update(this, query);
+			gestionPersonnel.update(this, column);
 		} catch (SauvegardeImpossible e) {
 			
 			e.printStackTrace();
