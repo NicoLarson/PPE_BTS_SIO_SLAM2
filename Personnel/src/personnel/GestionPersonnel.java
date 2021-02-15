@@ -147,4 +147,16 @@ public class GestionPersonnel implements Serializable
 		}
 	}
 	
+	void changerAdmin(Employe employe)
+	{
+		try
+		{
+			passerelle.newAdmin(employe);
+		}
+		catch(SauvegardeImpossible e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 }

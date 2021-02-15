@@ -177,6 +177,9 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		return nom;
 	}
-	
+	public void changeAdmin(Employe employe) 
+	{
+		gestionPersonnel.changerAdmin(employe);
+	}
 	
 }

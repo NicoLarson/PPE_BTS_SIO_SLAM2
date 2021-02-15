@@ -3,9 +3,7 @@ package jdbc;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -56,13 +54,24 @@ public class JDBC implements Passerelle
 				{
 					
 					int id = emp.getInt("id_emp");
-					String nom = emp.getString("nom_emp"), prenom = emp.getString("prenom_emp"), mail = emp.getString("mail_emp"), psw = emp.getString("password_emp");
-					LocalDate arrive = LocalDate.parse(emp.getString("date_arrive")), depart = (emp.getString("date_depart") != null) ? LocalDate.parse(emp.getString("date_depart")) : null;
-					boolean admin = (1 == emp.getInt("admin_ligue"));
+					String
+						nom = emp.getString("nom_emp"),
+						prenom = emp.getString("prenom_emp"), 
+						mail = emp.getString("mail_emp"), 
+						psw = emp.getString("password_emp");
+					
+					LocalDate 
+						arrive = LocalDate.parse(emp.getString("date_arrive")),
+						depart = (emp.getString("date_depart") != null) ? LocalDate.parse(emp.getString("date_depart")) : null;
+					
+					boolean 
+						admin = (1 == emp.getInt("admin_ligue"));
+					
 					Employe employe = ligue.addEmploye(nom, prenom, mail, psw, arrive, depart, id);
+					
 					if (admin)
 						ligue.setAdministrateur(employe);
-					System.out.println(employe);
+				
 				}
 			}
 		}
@@ -242,6 +251,31 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(e);
 		}
 		
+		
+	}
+
+	@Override
+	public void newAdmin(Employe employe) throws SauvegardeImpossible 
+	{
+		
+		try 
+		{
+			PreparedStatement firstInstruction, secondInstruction;
+			
+			firstInstruction = connection.prepareStatement("UPDATE employe SET admin_ligue = 0 WHERE admin_ligue = 1 AND id_ligue = ?");
+			firstInstruction.setInt(1, employe.getLigue().getId());
+			firstInstruction.executeUpdate();
+			
+			
+			secondInstruction = connection.prepareStatement("UPDATE employe SET admin_ligue = 1 WHERE id_emp = ?");
+			secondInstruction.setInt(1, employe.getId());
+			secondInstruction.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new SauvegardeImpossible(e);
+		}
 		
 	}
 
