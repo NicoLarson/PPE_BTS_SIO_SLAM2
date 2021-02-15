@@ -197,16 +197,13 @@ public class JDBC implements Passerelle
 	}
 
 	@Override
-	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible {
-		
+	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible 
+	{	
 		try
 		{
-			PreparedStatement tableLigue, tableEmploye;
-			tableEmploye = connection.prepareStatement("DELETE FROM employe WHERE id_ligue = ?");
-			tableLigue = connection.prepareStatement("DELETE FROM ligue WHERE id_ligue = ? LIMIT 1");
-			tableEmploye.setInt(1, ligue.getId());
+			PreparedStatement tableLigue;
+			tableLigue = connection.prepareStatement("DELETE FROM ligue WHERE id_ligue = ?");
 			tableLigue.setInt(1, ligue.getId());
-			tableEmploye.executeUpdate();
 			tableLigue.executeUpdate();
 			System.out.println("Ligue " + ligue.getNom() + " supprimé");
 		}
@@ -246,8 +243,6 @@ public class JDBC implements Passerelle
 			e.printStackTrace();
 			throw new SauvegardeImpossible(e);
 		}
-		
-		
 	}
 
 	@Override
