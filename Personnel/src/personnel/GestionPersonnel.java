@@ -75,7 +75,7 @@ public class GestionPersonnel implements Serializable
 	 * Retourne toutes les ligues enregistrées.
 	 * @return toutes les ligues enregistrées.
 	 */
-	
+
 	public SortedSet<Ligue> getLigues()
 	{
 		return Collections.unmodifiableSortedSet(ligues);
