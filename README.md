@@ -53,8 +53,9 @@ CREATE TABLE employe (
 
 - [x] Création d’une classe fille de Passerelle permettant de gérer la connexion à la base de données avec JDBC (ou avec Hibernate si vous le souhaitez).
 - [x] Modélisation de l’interface graphique avec des maquettes.
-[liens des maquettes]()
-![previewMaquettes]()
+
+[lien vers les maquettes](https://github.com/NicoLarson/PPE_BTS_SIO_SLAM2/blob/master/maquettes_interface_graphique.pdf)
+![previewMaquettes](https://raw.githubusercontent.com/NicoLarson/PPE_BTS_SIO_SLAM2/master/preview_maquettes.png)
 - [x] Possibilité de changer l’administrateur d’une ligue en ligne de commande. 
 
 ## Itération 4
