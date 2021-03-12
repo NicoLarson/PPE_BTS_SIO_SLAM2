@@ -115,6 +115,23 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
+	public void insertRoot(Employe employe) throws SauvegardeImpossible
+	{
+		try
+		{
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("INSERT INTO employe (nom_emp, prenom_emp, mail_emp, password_emp) VALUES (?,?,?,?)");
+			instruction.setString(1, employe.getNom());
+			instruction.setString(2, employe.getPrenom());
+			instruction.setString(3, employe.getMail());
+			instruction.setString(4, employe.getPass());
+			instruction.executeUpdate();
+		}
+		catch (SQLException exception)
+		{
+			throw new SauvegardeImpossible(exception);
+		}
+	}
 
 	@Override
 	public int insert(Employe employe) throws SauvegardeImpossible
@@ -260,7 +277,7 @@ public class JDBC implements Passerelle
 			if(!result.next())
 			{
 				
-				insert(root);
+				insertRoot(root);
 			}
 			while(result.next())
 			{

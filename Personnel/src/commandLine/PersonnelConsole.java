@@ -15,6 +15,7 @@ public class PersonnelConsole
 		this.gestionPersonnel = gestionPersonnel;
 		this.employeConsole = new EmployeConsole();
 		this.ligueConsole = new LigueConsole(gestionPersonnel, employeConsole);
+		
 	}
 	
 	public void start()
@@ -70,10 +71,11 @@ public class PersonnelConsole
 		return true;
 	}
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws SauvegardeImpossible
 	{
 		PersonnelConsole personnelConsole = 
 				new PersonnelConsole(GestionPersonnel.getGestionPersonnel());
+		personnelConsole.gestionPersonnel.rootBdd();
 		if (personnelConsole.verifiePassword())
 			personnelConsole.start();
 	}
