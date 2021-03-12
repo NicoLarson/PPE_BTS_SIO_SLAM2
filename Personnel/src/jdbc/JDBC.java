@@ -111,7 +111,7 @@ public class JDBC implements Passerelle
 		} 
 		catch (SQLException exception) 
 		{
-			exception.printStackTrace();
+			
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
@@ -136,7 +136,7 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException exception)
 		{
-			exception.printStackTrace();
+		
 			throw new SauvegardeImpossible(exception);
 		}
 	}
@@ -160,7 +160,7 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+		
 			throw new SauvegardeImpossible(e);
 		}
 	}
@@ -178,7 +178,7 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+
 			throw new SauvegardeImpossible(e);
 		}
 	}
@@ -196,7 +196,7 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			
 			throw new SauvegardeImpossible(e);
 		}
 		
@@ -225,7 +225,7 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			
 			throw new SauvegardeImpossible(e);
 		}
 	}
@@ -244,9 +244,43 @@ public class JDBC implements Passerelle
 		} 
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			
 			throw new SauvegardeImpossible(e);
 		}
+	}
+
+	@Override
+	public void bddRoot(Employe root) throws SauvegardeImpossible {
+		try 
+		{
+			
+			Statement intruction = connection.createStatement();
+			String requete = "SELECT * FROM employe WHERE super_admin = 1";
+			ResultSet result = intruction.executeQuery(requete);
+			if(!result.next())
+			{
+				
+				insert(root);
+			}
+			while(result.next())
+			{
+				String nom = (result.getString("nom_emp") != null)? result.getString("nom_emp") : "",
+					   prenom = (result.getString("prenom_emp") != null)? result.getString("prenom_emp") : "",
+					   mail = (result.getString("mail_emp") != null) ? result.getString("mail_emp") : "",
+					   password = (result.getString("password_emp") != null) ? result.getString("password_emp") : "";
+				root.setNom(nom);
+				root.setPrenom(prenom);
+				root.setMail(mail);
+				root.setPassword(password);
+			}
+		} 
+		catch (SQLException e)
+		{
+			
+			throw new SauvegardeImpossible(e);
+			
+		}
+		
 	}
 }
 
