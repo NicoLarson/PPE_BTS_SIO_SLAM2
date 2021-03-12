@@ -60,7 +60,7 @@ public class JDBC implements Passerelle
 						mail = emp.getString("mail_emp"), 
 						psw = emp.getString("password_emp");
 					LocalDate
-						arrive = LocalDate.parse(emp.getString("date_arrive")),
+						arrive = emp.getString("date_depart") != null ? LocalDate.parse(emp.getString("date_arrive")) : null,
 						depart = emp.getString("date_depart") != null ? LocalDate.parse(emp.getString("date_depart")) : null;
 
 					Employe employe = ligue.addEmploye(nom, prenom, mail, psw, arrive, depart, id);
@@ -127,7 +127,7 @@ public class JDBC implements Passerelle
 			instruction.setString(2, employe.getPrenom());
 			instruction.setString(3, employe.getMail());
 			instruction.setString(4, employe.getPass());
-			instruction.setString(5, String.valueOf(employe.getDateArrive()));
+			instruction.setDate(5, null);;
 			instruction.setInt(6, employe.getLigue().getId());
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
