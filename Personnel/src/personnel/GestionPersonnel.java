@@ -157,5 +157,8 @@ public class GestionPersonnel implements Serializable
 			e.printStackTrace();
 		}
 	}
-	
+	public void rootBdd() throws SauvegardeImpossible
+	{
+		passerelle.bddRoot(root);
+	}
 }

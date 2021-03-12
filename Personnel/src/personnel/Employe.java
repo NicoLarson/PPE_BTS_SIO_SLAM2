@@ -239,5 +239,8 @@ public class Employe implements Serializable, Comparable<Employe>
 			e.printStackTrace();
 		}
 	}
+	public GestionPersonnel getGestion() {
+		return gestionPersonnel;
+	}
 	
 }

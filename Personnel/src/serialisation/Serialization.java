@@ -87,4 +87,10 @@ public class Serialization implements personnel.Passerelle
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void bddRoot(Employe root) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		
+	}
 }
