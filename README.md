@@ -44,16 +44,18 @@ CREATE TABLE employe (
 
 ```
 
-- [ ] Saisie des dates avec gestion des erreurs
+- [x] Saisie des dates avec gestion des erreurs
 - [x] Tout le monde a utilisé git
-- [ ] Sélection d'un employé avant de décider si le supprime ou le modifie
-- [ ] Changement de l'admin d'une ligue en ligne de commande
+- [x] Sélection d'un employé avant de décider si le supprime ou le modifie
+- [x] Changement de l'admin d'une ligue en ligne de commande
 
 ## Itération 3
 
-- [ ] Création d’une classe fille de Passerelle permettant de gérer la connexion à la base de données avec JDBC (ou avec Hibernate si vous le souhaitez).
-- [ ] Modélisation de l’interface graphique avec des maquettes.
-- [ ] Possibilité de changer l’administrateur d’une ligue en ligne de commande. 
+- [x] Création d’une classe fille de Passerelle permettant de gérer la connexion à la base de données avec JDBC (ou avec Hibernate si vous le souhaitez).
+- [x] Modélisation de l’interface graphique avec des maquettes.
+[liens des maquettes]()
+![previewMaquettes]()
+- [x] Possibilité de changer l’administrateur d’une ligue en ligne de commande. 
 
 ## Itération 4
 
