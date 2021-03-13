@@ -23,7 +23,6 @@ public class GestionPersonnel implements Serializable
 	private Employe root = new Employe(this, null, "root", "", "", "toor", null, null) ;
 	public final static int SERIALIZATION = 1, JDBC = 2, 
 			TYPE_PASSERELLE = SERIALIZATION;  
-	@SuppressWarnings("unused")
 	private static Passerelle passerelle = (TYPE_PASSERELLE != JDBC) ? new jdbc.JDBC() : new serialisation.Serialization();	
 	
 	/**

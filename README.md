@@ -17,6 +17,8 @@
 - [x] Script de création de tables
 
 ```sql
+DROP DATABASE IF EXISTS M2L;
+
 CREATE DATABASE M2L;
 
 USE M2L;
@@ -44,16 +46,19 @@ CREATE TABLE employe (
 
 ```
 
-- [ ] Saisie des dates avec gestion des erreurs
+- [x] Saisie des dates avec gestion des erreurs
 - [x] Tout le monde a utilisé git
-- [ ] Sélection d'un employé avant de décider si le supprime ou le modifie
-- [ ] Changement de l'admin d'une ligue en ligne de commande
+- [x] Sélection d'un employé avant de décider si le supprime ou le modifie
+- [x] Changement de l'admin d'une ligue en ligne de commande
 
 ## Itération 3
 
-- [ ] Création d’une classe fille de Passerelle permettant de gérer la connexion à la base de données avec JDBC (ou avec Hibernate si vous le souhaitez).
-- [ ] Modélisation de l’interface graphique avec des maquettes.
-- [ ] Possibilité de changer l’administrateur d’une ligue en ligne de commande. 
+- [x] Création d’une classe fille de Passerelle permettant de gérer la connexion à la base de données avec JDBC (ou avec Hibernate si vous le souhaitez).
+- [x] Modélisation de l’interface graphique avec des maquettes.
+
+[lien vers les maquettes](https://github.com/NicoLarson/PPE_BTS_SIO_SLAM2/blob/master/maquettes_interface_graphique.pdf)
+![previewMaquettes](https://raw.githubusercontent.com/NicoLarson/PPE_BTS_SIO_SLAM2/master/preview_maquettes.png)
+- [x] Possibilité de changer l’administrateur d’une ligue en ligne de commande. 
 
 ## Itération 4
 

@@ -48,6 +48,7 @@ public class LigueConsole
 				}
 		);
 	}
+
 	private Option afficherEmployes(final Ligue ligue, String key)
 	{
 		return new Option("Afficher les employes", key, () -> { 
@@ -114,17 +115,15 @@ public class LigueConsole
 					mail = EmployeConsole.isRequired("Mail : "),
 					password = EmployeConsole.isRequired("Password : ");
 					LocalDate dateArrive = null;
+					boolean flag = false;
 					
-					while (dateArrive == null) {
+					while (!flag) {
 						try {
 							String date = getString("Date d'arrivé : ");
-
-							if (date.equals(""))
-								dateArrive = LocalDate.now();
-							else
-								dateArrive = LocalDate.parse(date);
+							dateArrive = date.equals("") ? null : LocalDate.parse(date);
+							flag = true;
 						} catch (DateTimeParseException e) {
-							System.out.println("Date incorect");
+							System.out.println("Date incorrect");
 						}
 					}
 					ligue.addEmploye(nom, prenom, mail, password, dateArrive, null);
@@ -181,3 +180,4 @@ public class LigueConsole
 		return new Option("Supprimer", key, () -> {ligue.remove();});
 	}
 }
+ 
