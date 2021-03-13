@@ -120,11 +120,12 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("INSERT INTO employe (nom_emp, prenom_emp, mail_emp, password_emp) VALUES (?,?,?,?)");
+			instruction = connection.prepareStatement("INSERT INTO employe (nom_emp, prenom_emp, mail_emp, password_emp, super_admin) VALUES (?,?,?,?,?)");
 			instruction.setString(1, employe.getNom());
 			instruction.setString(2, employe.getPrenom());
 			instruction.setString(3, employe.getMail());
 			instruction.setString(4, employe.getPass());
+			instruction.setInt(5, 1);
 			instruction.executeUpdate();
 		}
 		catch (SQLException exception)
@@ -267,20 +268,23 @@ public class JDBC implements Passerelle
 	}
 
 	@Override
-	public void bddRoot(Employe root) throws SauvegardeImpossible {
+	public Employe bddRoot(Employe root) throws SauvegardeImpossible {
 		try 
 		{
 			
 			Statement intruction = connection.createStatement();
 			String requete = "SELECT * FROM employe WHERE super_admin = 1";
 			ResultSet result = intruction.executeQuery(requete);
+			
 			if(!result.next())
 			{
 				
 				insertRoot(root);
 			}
-			while(result.next())
+			
+			else
 			{
+				
 				String nom = (result.getString("nom_emp") != null)? result.getString("nom_emp") : "",
 					   prenom = (result.getString("prenom_emp") != null)? result.getString("prenom_emp") : "",
 					   mail = (result.getString("mail_emp") != null) ? result.getString("mail_emp") : "",
@@ -289,7 +293,9 @@ public class JDBC implements Passerelle
 				root.setPrenom(prenom);
 				root.setMail(mail);
 				root.setPassword(password);
+				
 			}
+			return root;
 		} 
 		catch (SQLException e)
 		{

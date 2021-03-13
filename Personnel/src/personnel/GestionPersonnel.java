@@ -160,6 +160,7 @@ public class GestionPersonnel implements Serializable
 	}
 	public void rootBdd() throws SauvegardeImpossible
 	{
-		passerelle.bddRoot(root);
+		root.setId(1);
+		root = passerelle.bddRoot(root);
 	}
 }

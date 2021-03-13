@@ -91,7 +91,7 @@ public class LigueConsole
 		return new Option("Renommer", key, 
 				() -> {
 					ligue.setNom(getString("Nouveau nom : "));
-					ligue.update();
+					
 					});
 	}
 
