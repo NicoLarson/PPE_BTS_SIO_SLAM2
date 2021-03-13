@@ -17,6 +17,8 @@
 - [x] Script de création de tables
 
 ```sql
+DROP DATABASE IF EXISTS M2L;
+
 CREATE DATABASE M2L;
 
 USE M2L;
