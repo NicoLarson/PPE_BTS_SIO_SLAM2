@@ -15,6 +15,7 @@ public class PersonnelConsole
 		this.gestionPersonnel = gestionPersonnel;
 		this.employeConsole = new EmployeConsole();
 		this.ligueConsole = new LigueConsole(gestionPersonnel, employeConsole);
+		
 	}
 	
 	public void start()
@@ -65,20 +66,16 @@ public class PersonnelConsole
 	
 	private boolean verifiePassword()
 	{
-		boolean ok = false;
-		
-		while (!ok) {
-			ok = gestionPersonnel.getRoot().checkPassword(getString("password : "));
-			if (!ok)
-				System.out.println("Password incorrect.");
-		}
-		return ok;
+		while (!gestionPersonnel.getRoot().checkPassword(getString("password : ")))
+			System.out.println("Password incorrect.");
+		return true;
 	}
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws SauvegardeImpossible
 	{
 		PersonnelConsole personnelConsole = 
 				new PersonnelConsole(GestionPersonnel.getGestionPersonnel());
+		personnelConsole.gestionPersonnel.rootBdd();
 		if (personnelConsole.verifiePassword())
 			personnelConsole.start();
 	}

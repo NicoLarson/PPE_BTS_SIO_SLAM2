@@ -60,7 +60,7 @@ public class JDBC implements Passerelle
 						mail = emp.getString("mail_emp"), 
 						psw = emp.getString("password_emp");
 					LocalDate
-						arrive = LocalDate.parse(emp.getString("date_arrive")),
+						arrive = emp.getString("date_depart") != null ? LocalDate.parse(emp.getString("date_arrive")) : null,
 						depart = emp.getString("date_depart") != null ? LocalDate.parse(emp.getString("date_depart")) : null;
 
 					Employe employe = ligue.addEmploye(nom, prenom, mail, psw, arrive, depart, id);
@@ -111,9 +111,27 @@ public class JDBC implements Passerelle
 		} 
 		catch (SQLException exception) 
 		{
-			exception.printStackTrace();
+			
 			throw new SauvegardeImpossible(exception);
 		}		
+	}
+	public void insertRoot(Employe employe) throws SauvegardeImpossible
+	{
+		try
+		{
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("INSERT INTO employe (nom_emp, prenom_emp, mail_emp, password_emp, super_admin) VALUES (?,?,?,?,?)");
+			instruction.setString(1, employe.getNom());
+			instruction.setString(2, employe.getPrenom());
+			instruction.setString(3, employe.getMail());
+			instruction.setString(4, employe.getPass());
+			instruction.setInt(5, 1);
+			instruction.executeUpdate();
+		}
+		catch (SQLException exception)
+		{
+			throw new SauvegardeImpossible(exception);
+		}
 	}
 
 	@Override
@@ -127,7 +145,7 @@ public class JDBC implements Passerelle
 			instruction.setString(2, employe.getPrenom());
 			instruction.setString(3, employe.getMail());
 			instruction.setString(4, employe.getPass());
-			instruction.setString(5, String.valueOf(employe.getDateArrive()));
+			instruction.setDate(5, null);;
 			instruction.setInt(6, employe.getLigue().getId());
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
@@ -136,7 +154,7 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException exception)
 		{
-			exception.printStackTrace();
+		
 			throw new SauvegardeImpossible(exception);
 		}
 	}
@@ -160,7 +178,7 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+		
 			throw new SauvegardeImpossible(e);
 		}
 	}
@@ -178,7 +196,7 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+
 			throw new SauvegardeImpossible(e);
 		}
 	}
@@ -196,7 +214,7 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			
 			throw new SauvegardeImpossible(e);
 		}
 		
@@ -225,7 +243,7 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			
 			throw new SauvegardeImpossible(e);
 		}
 	}
@@ -244,9 +262,48 @@ public class JDBC implements Passerelle
 		} 
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			
 			throw new SauvegardeImpossible(e);
 		}
+	}
+
+	@Override
+	public Employe bddRoot(Employe root) throws SauvegardeImpossible {
+		try 
+		{
+			
+			Statement intruction = connection.createStatement();
+			String requete = "SELECT * FROM employe WHERE super_admin = 1";
+			ResultSet result = intruction.executeQuery(requete);
+			
+			if(!result.next())
+			{
+				
+				insertRoot(root);
+			}
+			
+			else
+			{
+				
+				String nom = (result.getString("nom_emp") != null)? result.getString("nom_emp") : "",
+					   prenom = (result.getString("prenom_emp") != null)? result.getString("prenom_emp") : "",
+					   mail = (result.getString("mail_emp") != null) ? result.getString("mail_emp") : "",
+					   password = (result.getString("password_emp") != null) ? result.getString("password_emp") : "";
+				root.setNom(nom);
+				root.setPrenom(prenom);
+				root.setMail(mail);
+				root.setPassword(password);
+				
+			}
+			return root;
+		} 
+		catch (SQLException e)
+		{
+			
+			throw new SauvegardeImpossible(e);
+			
+		}
+		
 	}
 }
 

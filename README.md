@@ -17,43 +17,48 @@
 - [x] Script de création de tables
 
 ```sql
+DROP DATABASE IF EXISTS M2L;
+
 CREATE DATABASE M2L;
 
 USE M2L;
 
-CREATE TABLE LIGUE (
+CREATE TABLE ligue (
   id_ligue INT AUTO_INCREMENT,
   nom_ligue VARCHAR(255) NOT NULL,
   PRIMARY KEY (id_ligue));
 
-CREATE TABLE EMPLOYE (
+CREATE TABLE employe (
   id_emp INT AUTO_INCREMENT,
   nom_emp VARCHAR(45) NOT NULL,
   prenom_emp VARCHAR(45) NOT NULL,
   mail_emp VARCHAR(255) NOT NULL,
   password_emp VARCHAR(255) NOT NULL,
-  date_arrive DATE NOT NULL,
+  date_arrive DATE,
   date_depart DATE,
   admin_ligue BOOLEAN NOT NULL DEFAULT 0,
   super_admin BOOLEAN NOT NULL DEFAULT 0,
   id_ligue INT NULL,
   PRIMARY KEY (id_emp),
     FOREIGN KEY (id_ligue)
-    REFERENCES LIGUE (id_ligue) ON DELETE CASCADE
+    REFERENCES ligue (id_ligue) ON DELETE CASCADE
 );
 
 ```
 
-- [ ] Saisie des dates avec gestion des erreurs
+- [x] Saisie des dates avec gestion des erreurs
 - [x] Tout le monde a utilisé git
-- [ ] Sélection d'un employé avant de décider si le supprime ou le modifie
-- [ ] Changement de l'admin d'une ligue en ligne de commande
+- [x] Sélection d'un employé avant de décider si le supprime ou le modifie
+- [x] Changement de l'admin d'une ligue en ligne de commande
 
 ## Itération 3
 
-- [ ] Création d’une classe fille de Passerelle permettant de gérer la connexion à la base de données avec JDBC (ou avec Hibernate si vous le souhaitez).
-- [ ] Modélisation de l’interface graphique avec des maquettes.
-- [ ] Possibilité de changer l’administrateur d’une ligue en ligne de commande. 
+- [x] Création d’une classe fille de Passerelle permettant de gérer la connexion à la base de données avec JDBC (ou avec Hibernate si vous le souhaitez).
+- [x] Modélisation de l’interface graphique avec des maquettes.
+
+[lien vers les maquettes](https://github.com/NicoLarson/PPE_BTS_SIO_SLAM2/blob/master/maquettes_interface_graphique.pdf)
+![previewMaquettes](https://raw.githubusercontent.com/NicoLarson/PPE_BTS_SIO_SLAM2/master/preview_maquettes.png)
+- [x] Possibilité de changer l’administrateur d’une ligue en ligne de commande. 
 
 ## Itération 4
 

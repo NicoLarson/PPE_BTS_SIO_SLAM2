@@ -75,6 +75,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setNom(String nom)
 	{
 		this.nom = nom;
+		this.update("nom_emp");
 	}
 
 	/**
@@ -95,6 +96,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setPrenom(String prenom)
 	{
 		this.prenom = prenom;
+		this.update("prenom_emp");
 	}
 
 	/**
@@ -115,6 +117,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setMail(String mail)
 	{
 		this.mail = mail;
+		this.update("mail_emp");
 	}
 	
 	public String getPass() 
@@ -135,6 +138,8 @@ public class Employe implements Serializable, Comparable<Employe>
 		if (dateArrive != null && dateDepart != null && dateArrive.isAfter(dateDepart))
 			throw new DateImpossible();
 		this.dateDepart = dateDepart;
+		this.update("date_depart");
+		
 	}
 	
 	public LocalDate getDateDepart()
@@ -147,6 +152,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		if (dateArrive != null && dateDepart != null && dateDepart.isBefore(dateArrive))
 			throw new DateImpossible();
 		this.dateArrive = dateArrive;
+		this.update("date_arrive");
 	}
 	
 	public LocalDate getDateArrive()
@@ -166,7 +172,8 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	public void setPassword(String password)
 	{
-		this.password = password;
+		this.password= password;
+		this.update("password_emp");
 	}
 
 	/**
@@ -238,6 +245,9 @@ public class Employe implements Serializable, Comparable<Employe>
 			
 			e.printStackTrace();
 		}
+	}
+	public GestionPersonnel getGestion() {
+		return gestionPersonnel;
 	}
 	
 }
