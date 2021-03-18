@@ -40,7 +40,7 @@ public class JDBC implements Passerelle
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
 		try 
 		{
-			String requete = "SELECT * FROM ligue ORDER BY nom_ligue";
+			String requete = "SELECT * FROM ligue";
 			Statement instruction = connection.createStatement();
 			ResultSet ligues = instruction.executeQuery(requete);
 
@@ -51,7 +51,7 @@ public class JDBC implements Passerelle
 				req.setInt(1, ligues.getInt("id_ligue"));
 				ResultSet emp = req.executeQuery();
 				Ligue ligue = gestionPersonnel.getLigues().last();
-				
+
 				while (emp.next())
 				{
 					int id = emp.getInt("id_emp");
@@ -280,7 +280,6 @@ public class JDBC implements Passerelle
 			
 			if(!result.next())
 			{
-				
 				insertRoot(root);
 			}
 			
@@ -294,15 +293,12 @@ public class JDBC implements Passerelle
 				root.setPrenom(prenom);
 				root.setMail(mail);
 				root.setPassword(password);
-				
 			}
 			return root;
 		} 
 		catch (SQLException e)
 		{
-			
 			throw new SauvegardeImpossible(e);
-			
 		}
 		
 	}

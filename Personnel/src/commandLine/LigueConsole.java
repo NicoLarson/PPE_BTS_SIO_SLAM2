@@ -114,18 +114,8 @@ public class LigueConsole
 					prenom = EmployeConsole.isRequired("Prenom : "),
 					mail = EmployeConsole.isRequired("Mail : "),
 					password = EmployeConsole.isRequired("Password : ");
-					LocalDate dateArrive = null;
-					boolean flag = false;
+					LocalDate dateArrive = getDate("Date d'arrivé (format yyyy-mm-dd): ");
 
-					while (!flag) {
-						try {
-							String date = getString("Date d'arrivé (format yyyy-mm-dd): ");
-							dateArrive = date.equals("") ? null : LocalDate.parse(date);
-							flag = true;
-						} catch (DateTimeParseException e) {
-							System.out.println("Date incorrect");
-						}
-					}
 					ligue.addEmploye(nom, prenom, mail, password, dateArrive, null);
 				}
 		);
@@ -178,6 +168,18 @@ public class LigueConsole
 	private Option supprimer(Ligue ligue, String key)
 	{
 		return new Option("Supprimer", key, () -> {ligue.remove();});
+	}
+	
+	private LocalDate getDate(String message)
+	{
+		while (true) {
+			try {
+				String date = getString(message);
+				return date.equals("") ? null : LocalDate.parse(date);
+			} catch (DateTimeParseException e) {
+				System.out.println("Date incorrect");
+			}
+		}
 	}
 }
  
