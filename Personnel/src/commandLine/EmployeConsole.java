@@ -76,19 +76,18 @@ public class EmployeConsole
 	private Option changerDateArrive(final Employe employe, String key)
 	{
 		return new Option("Changer la date d'arrivée", key, () -> {
-			LocalDate dateArrive = null;
+			boolean flag = false;
 			
-			while (dateArrive == null) {
+			while (!flag) {
 				try {
-					dateArrive = LocalDate.parse(getString("Date arrive :"));
-					employe.setDateArrive(dateArrive);
+					String date = getString("Date d'arrivée (format yyyy-mm-dd): ");
 					
+					LocalDate dateArrive = date.equals("") ? null : LocalDate.parse(date);
+					employe.setDateArrive(dateArrive);
+					flag = true;
 				}
-				catch (DateTimeParseException e) {
+				catch (DateTimeParseException | DateImpossible e) {
 					System.out.println("Date incorrect");
-				}
-				catch (DateImpossible e) {
-					dateArrive = null;
 				}
 			}
 		});
@@ -97,19 +96,18 @@ public class EmployeConsole
 	private Option changerDateDepart(final Employe employe, String key)
 	{
 		return new Option("Changer la date de depart", key, () -> {
-			LocalDate dateDepart = null;
+			boolean flag = false;
 			
-			while (dateDepart == null) {
+			while (!flag) {
 				try {
-					dateDepart = LocalDate.parse(getString("Date de départ :"));
-					employe.setDateDepart(dateDepart);
+					String date = getString("Date de départ (format yyyy-mm-dd): ");
 					
+					LocalDate dateDepart = date.equals("") ? null : LocalDate.parse(date);
+					employe.setDateDepart(dateDepart);
+					flag = true;
 				}
-				catch (DateTimeParseException e) {
+				catch (DateTimeParseException | DateImpossible e) {
 					System.out.println("Date incorrect");
-				}
-				catch (DateImpossible e) {
-					dateDepart = null;
 				}
 			}
 		});

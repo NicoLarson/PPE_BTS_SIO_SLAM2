@@ -117,21 +117,20 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 */
 	 
 
-	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateDepart, LocalDate dateArrive)
+	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrive, LocalDate dateDepart)
 	{
-		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateDepart, dateArrive);
+		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateArrive, dateDepart);
 		employes.add(employe);
 		try {
 			employe.setId(gestionPersonnel.insert(employe));
 		} catch (SauvegardeImpossible e) {
-			
 			e.printStackTrace();
 		}
 		return employe;
 	}
 	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrive, LocalDate dateDepart, int id)
 	{
-		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateDepart, dateArrive);
+		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateArrive, dateDepart);
 		employe.setId(id);
 		employes.add(employe);
 		return employe;

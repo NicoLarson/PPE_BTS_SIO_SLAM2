@@ -116,10 +116,10 @@ public class LigueConsole
 					password = EmployeConsole.isRequired("Password : ");
 					LocalDate dateArrive = null;
 					boolean flag = false;
-					
+
 					while (!flag) {
 						try {
-							String date = getString("Date d'arrivé : ");
+							String date = getString("Date d'arrivé (format yyyy-mm-dd): ");
 							dateArrive = date.equals("") ? null : LocalDate.parse(date);
 							flag = true;
 						} catch (DateTimeParseException e) {

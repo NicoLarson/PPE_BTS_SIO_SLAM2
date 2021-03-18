@@ -3,6 +3,7 @@ package jdbc;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -60,9 +61,8 @@ public class JDBC implements Passerelle
 						mail = emp.getString("mail_emp"), 
 						psw = emp.getString("password_emp");
 					LocalDate
-						arrive = emp.getString("date_depart") != null ? LocalDate.parse(emp.getString("date_arrive")) : null,
-						depart = emp.getString("date_depart") != null ? LocalDate.parse(emp.getString("date_depart")) : null;
-
+						arrive = emp.getDate("date_arrive") != null ? LocalDate.parse(emp.getString("date_arrive")) : null,
+						depart = emp.getDate("date_depart") != null ? LocalDate.parse(emp.getString("date_depart")) : null;
 					Employe employe = ligue.addEmploye(nom, prenom, mail, psw, arrive, depart, id);
 					
 					if (emp.getBoolean("admin_ligue"))
@@ -108,6 +108,7 @@ public class JDBC implements Passerelle
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();
 			return id.getInt(1);
+			
 		} 
 		catch (SQLException exception) 
 		{
@@ -145,7 +146,7 @@ public class JDBC implements Passerelle
 			instruction.setString(2, employe.getPrenom());
 			instruction.setString(3, employe.getMail());
 			instruction.setString(4, employe.getPass());
-			instruction.setDate(5, null);;
+			instruction.setDate(5, employe.getDateArrive() == null ? null : Date.valueOf(employe.getDateArrive()));
 			instruction.setInt(6, employe.getLigue().getId());
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
@@ -236,14 +237,16 @@ public class JDBC implements Passerelle
 					"date_arrive", String.valueOf(emp.getDateArrive()),
 					"date_depart", String.valueOf(emp.getDateDepart())
 			);
-
-			instruction.setString(1, map.get(column));
+			
+			if (column.equals("date_arrive") || column.equals("date_depart"))
+				instruction.setDate(1, map.get(column).equals("null") ? null : Date.valueOf(map.get(column)));
+			else
+				instruction.setString(1, map.get(column));
 			instruction.setInt(2, emp.getId());
 			instruction.executeUpdate();
 		}
 		catch (SQLException e) 
 		{
-			
 			throw new SauvegardeImpossible(e);
 		}
 	}
@@ -262,7 +265,6 @@ public class JDBC implements Passerelle
 		} 
 		catch (SQLException e) 
 		{
-			
 			throw new SauvegardeImpossible(e);
 		}
 	}
@@ -284,7 +286,6 @@ public class JDBC implements Passerelle
 			
 			else
 			{
-				
 				String nom = (result.getString("nom_emp") != null)? result.getString("nom_emp") : "",
 					   prenom = (result.getString("prenom_emp") != null)? result.getString("prenom_emp") : "",
 					   mail = (result.getString("mail_emp") != null) ? result.getString("mail_emp") : "",
