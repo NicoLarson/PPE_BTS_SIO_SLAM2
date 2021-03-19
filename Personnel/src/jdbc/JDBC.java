@@ -52,7 +52,6 @@ public class JDBC implements Passerelle
 				Ligue ligue = gestionPersonnel.getLigues().last();
 				while (emp.next())
 				{
-					System.out.println(emp.getString("nom_emp"));
 					int id = emp.getInt("id_emp");
 					String
 						nom = emp.getString("nom_emp"),
