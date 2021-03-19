@@ -113,7 +113,7 @@ public class EmployeConsole
 		});
 	}
 	
-	protected static String isRequired(String message)
+	public static String isRequired(String message)
 	{
 		String value = "";
 		

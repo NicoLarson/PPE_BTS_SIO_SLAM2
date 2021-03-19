@@ -67,7 +67,7 @@ public class LigueConsole
 		{
 			try
 			{
-				gestionPersonnel.addLigue(getString("nom : "));
+				gestionPersonnel.addLigue(EmployeConsole.isRequired("Nom : "));
 			}
 			catch(SauvegardeImpossible exception)
 			{
