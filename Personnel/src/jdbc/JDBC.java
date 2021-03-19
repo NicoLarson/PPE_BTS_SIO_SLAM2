@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Map;
-import java.util.SortedSet;
 
 import personnel.*;
 
@@ -40,7 +39,7 @@ public class JDBC implements Passerelle
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
 		try 
 		{
-			String requete = "SELECT * FROM ligue";
+			String requete = "SELECT * FROM ligue ORDER BY nom_ligue";
 			Statement instruction = connection.createStatement();
 			ResultSet ligues = instruction.executeQuery(requete);
 
@@ -51,9 +50,9 @@ public class JDBC implements Passerelle
 				req.setInt(1, ligues.getInt("id_ligue"));
 				ResultSet emp = req.executeQuery();
 				Ligue ligue = gestionPersonnel.getLigues().last();
-
 				while (emp.next())
 				{
+					System.out.println(emp.getString("nom_emp"));
 					int id = emp.getInt("id_emp");
 					String
 						nom = emp.getString("nom_emp"),
@@ -300,7 +299,6 @@ public class JDBC implements Passerelle
 		{
 			throw new SauvegardeImpossible(e);
 		}
-		
 	}
 }
 
