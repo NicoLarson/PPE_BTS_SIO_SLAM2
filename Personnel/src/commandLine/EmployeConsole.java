@@ -42,7 +42,7 @@ public class EmployeConsole
 	{
 		return new Option("Changer le nom", key, () -> 
 		{
-			employe.setNom(isRequired("Nouveau nom : "));
+			employe.setNom(PersonnelConsole.isRequired("Nouveau nom : "));
 			
 		});
 	}
@@ -50,7 +50,7 @@ public class EmployeConsole
 	private Option changerPrenom(final Employe employe, String key)
 	{
 		return new Option("Changer le prénom", key, () -> 
-		{	employe.setPrenom(isRequired("Nouveau prénom : "));
+		{	employe.setPrenom(PersonnelConsole.isRequired("Nouveau prénom : "));
 			
 		});
 	}
@@ -59,7 +59,7 @@ public class EmployeConsole
 	{
 		return new Option("Changer le mail", key, () -> 
 		{
-			employe.setMail(isRequired("Nouveau mail : "));
+			employe.setMail(PersonnelConsole.isRequired("Nouveau mail : "));
 			
 		});
 	}
@@ -68,7 +68,7 @@ public class EmployeConsole
 	{
 		return new Option("Changer le password", key, () -> 
 		{
-			employe.setPassword(isRequired("Nouveau password : "));
+			employe.setPassword(PersonnelConsole.isRequired("Nouveau password : "));
 			
 		});
 	}
@@ -111,14 +111,5 @@ public class EmployeConsole
 				}
 			}
 		});
-	}
-	
-	public static String isRequired(String message)
-	{
-		String value = "";
-		
-		while (value.length() == 0)
-			value = getString(message);
-		return value;
 	}
 }

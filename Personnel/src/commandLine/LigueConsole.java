@@ -67,7 +67,7 @@ public class LigueConsole
 		{
 			try
 			{
-				gestionPersonnel.addLigue(EmployeConsole.isRequired("Nom : "));
+				gestionPersonnel.addLigue(PersonnelConsole.isRequired("Nom : "));
 			}
 			catch(SauvegardeImpossible exception)
 			{
@@ -110,10 +110,10 @@ public class LigueConsole
 		return new Option("Ajouter un employé", key,
 				() -> 
 				{
-					String nom = EmployeConsole.isRequired("nom : "),
-					prenom = EmployeConsole.isRequired("Prenom : "),
-					mail = EmployeConsole.isRequired("Mail : "),
-					password = EmployeConsole.isRequired("Password : ");
+					String nom = PersonnelConsole.isRequired("nom : "),
+					prenom = PersonnelConsole.isRequired("Prenom : "),
+					mail = PersonnelConsole.isRequired("Mail : "),
+					password = PersonnelConsole.isRequired("Password : ");
 					LocalDate dateArrive = getDate("Date d'arrivé (format yyyy-mm-dd): ");
 
 					ligue.addEmploye(nom, prenom, mail, password, dateArrive, null);

@@ -70,6 +70,15 @@ public class PersonnelConsole
 			System.out.println("Password incorrect.");
 		return true;
 	}
+
+	public static String isRequired(String message)
+	{
+		String value = "";
+		
+		while (value.length() == 0)
+			value = getString(message);
+		return value;
+	}
 	
 	public static void main(String[] args) throws SauvegardeImpossible
 	{
