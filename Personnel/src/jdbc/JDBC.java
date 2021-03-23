@@ -37,8 +37,11 @@ public class JDBC implements Passerelle
 	public GestionPersonnel getGestionPersonnel() 
 	{
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
+		
+		
 		try 
 		{
+			gestionPersonnel.rootBdd();
 			String requete = "SELECT * FROM ligue ORDER BY nom_ligue";
 			Statement instruction = connection.createStatement();
 			ResultSet ligues = instruction.executeQuery(requete);
@@ -71,7 +74,11 @@ public class JDBC implements Passerelle
 		catch (SQLException e)
 		{
 			System.out.println(e);
+		} catch (SauvegardeImpossible e) {
+			
+			e.printStackTrace();
 		}
+		
 		return gestionPersonnel;
 	}
 

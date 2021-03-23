@@ -84,7 +84,7 @@ public class PersonnelConsole
 	{
 		PersonnelConsole personnelConsole = 
 				new PersonnelConsole(GestionPersonnel.getGestionPersonnel());
-		personnelConsole.gestionPersonnel.rootBdd();
+		
 		if (personnelConsole.verifiePassword())
 			personnelConsole.start();
 	}
