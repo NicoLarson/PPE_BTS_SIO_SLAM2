@@ -1,3 +1,5 @@
 /bin
 GestionPersonnel.srz
 /target/
+.classpath
+.project
