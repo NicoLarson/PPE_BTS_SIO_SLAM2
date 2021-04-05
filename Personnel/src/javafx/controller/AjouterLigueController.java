@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
-import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
 

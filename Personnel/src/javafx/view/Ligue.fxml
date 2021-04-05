@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #34495e;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controller.LigueController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #34495e;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controller.LigueController">
    <children>
       <Button contentDisplay="CENTER" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#quitter" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="Retour" textFill="#2c3e50">
          <font>
@@ -18,7 +18,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button contentDisplay="CENTER" layoutX="223.0" layoutY="331.0" mnemonicParsing="false" onAction="#ajouterEmploye" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="Ajouter une ligue" textFill="#2c3e50">
+      <Button contentDisplay="CENTER" layoutX="223.0" layoutY="331.0" mnemonicParsing="false" onAction="#ajouterEmploye" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="Ajouter Employé" textFill="#2c3e50">
          <font>
             <Font name="Arial" size="16.0" />
          </font>

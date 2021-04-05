@@ -11,12 +11,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 
 
-public class Main extends Application {
+public class MainApp extends Application {
 	
-	private static Stage stage;
+	
 	@Override
-	public void start(Stage primaryStage) throws IOException {
-			stage = primaryStage;
+	public void start(Stage stage) throws IOException {
+			
 			Parent root = FXMLLoader.load(getClass().getResource("view/Login.fxml"));
 			stage.getIcons().add(new Image("manage_accounts.png"));
 			stage.setScene(new Scene(root));
@@ -27,7 +27,5 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	public static Stage getStage() {
-		return stage;
-	}
+	
 }
