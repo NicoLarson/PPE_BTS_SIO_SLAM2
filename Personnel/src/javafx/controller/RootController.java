@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import personnel.Employe;
@@ -41,9 +42,7 @@ public class RootController implements Initializable {
 	@FXML
 	private AnchorPane anchorPane;
 	
-	
-	
-	
+
 	public void setTextField() {
 		rootTitle.setText(root.getNom());
 		nomTextField.setText(root.getNom());
@@ -51,7 +50,6 @@ public class RootController implements Initializable {
 		mailTextField.setText(root.getMail());
 		passwordTextField.setText(root.getPass());
 	}
-	
 	
 	@FXML
 	public void sauvegarder() {
@@ -80,10 +78,9 @@ public class RootController implements Initializable {
 		in.setOnFinished((e)->pause.play());
 		pause.setOnFinished((e)->out.play());
 	}
-
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
 		setTextField();
 	}
 }

@@ -220,7 +220,6 @@ public class JDBC implements Passerelle
 		}
 		catch (SQLException e) 
 		{
-			
 			throw new SauvegardeImpossible(e);
 		}
 		

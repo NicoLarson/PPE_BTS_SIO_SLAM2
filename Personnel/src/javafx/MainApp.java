@@ -18,7 +18,7 @@ public class MainApp extends Application {
 	public void start(Stage stage) throws IOException {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("view/Login.fxml"));
-			stage.getIcons().add(new Image("manage_accounts.png"));
+			//stage.getIcons().add(new Image("manage_accounts.png"));
 			stage.setScene(new Scene(root));
 			stage.setResizable(false);
 			stage.show();
