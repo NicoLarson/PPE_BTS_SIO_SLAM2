@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
 public class GererController {
@@ -14,14 +15,20 @@ public class GererController {
 	AnchorPane anchorPane;
 
 	@FXML
-	public void accessRoot(ActionEvent event) throws IOException {
+	private void accessRoot(ActionEvent event) throws IOException {
 		AnchorPane accessRoot = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Root.fxml"));
 		anchorPane.getChildren().setAll(accessRoot);
 	}
 	
 	@FXML
-	public void accessLigues(ActionEvent event) throws IOException {
+	private void accessLigues(ActionEvent event) throws IOException {
 		AnchorPane accessLigues = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Ligues.fxml"));
 		anchorPane.getChildren().setAll(accessLigues);
+	}
+	
+	@FXML
+	private void exit()
+	{
+		Platform.exit();
 	}
 }
