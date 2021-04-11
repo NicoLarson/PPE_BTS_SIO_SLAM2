@@ -277,7 +277,6 @@ public class JDBC implements Passerelle
 	public Employe bddRoot(Employe root) throws SauvegardeImpossible {
 		try 
 		{
-			
 			Statement intruction = connection.createStatement();
 			String requete = "SELECT * FROM employe WHERE super_admin = 1";
 			ResultSet result = intruction.executeQuery(requete);

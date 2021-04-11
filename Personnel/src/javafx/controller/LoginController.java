@@ -50,7 +50,7 @@ public class LoginController implements Initializable{
 	}
 	
 	@FXML
-	public void btnLogin() throws IOException {		
+	private void btnLogin() throws IOException {		
 		checkLogin(passwordLogin.getText());
 	}
 

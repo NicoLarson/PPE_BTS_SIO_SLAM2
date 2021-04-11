@@ -1,51 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #34495E;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controller.RootController">
    <children>
-      <Label fx:id="rootTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="141.0" layoutY="35.0" prefHeight="42.0" prefWidth="317.0" text="Example" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
-         <font>
-            <Font name="Arial Bold" size="36.0" />
-         </font>
-      </Label>
-      <TextField fx:id="nomTextField" layoutX="88.0" layoutY="153.0" style="-fx-background-radius: 0;" />
-      <TextField fx:id="prenomTextField" layoutX="88.0" layoutY="223.0" style="-fx-background-radius: 0;" />
-      <TextField fx:id="mailTextField" layoutX="362.0" layoutY="153.0" style="-fx-background-radius: 0;" />
-      <TextField fx:id="passwordTextField" layoutX="362.0" layoutY="223.0" style="-fx-background-radius: 0;" />
-      <Label layoutX="88.0" layoutY="131.0" prefHeight="21.0" prefWidth="97.0" text="Nom" textFill="WHITE">
-         <font>
-            <Font name="Arial" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="88.0" layoutY="200.0" prefHeight="21.0" prefWidth="97.0" text="Prénom" textFill="WHITE">
-         <font>
-            <Font name="Arial" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="362.0" layoutY="131.0" prefHeight="21.0" prefWidth="97.0" text="Mail" textFill="WHITE">
-         <font>
-            <Font name="Arial" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="362.0" layoutY="200.0" prefHeight="21.0" prefWidth="97.0" text="Password" textFill="WHITE">
-         <font>
-            <Font name="Arial" size="18.0" />
-         </font>
-      </Label>
-      <Button layoutX="225.0" layoutY="312.0" mnemonicParsing="false" onAction="#sauvegarder" prefHeight="43.0" prefWidth="149.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: rgb(255,255,255); -fx-border-width: 3;" text="Sauvegarder" textFill="#2c3e50">
-         <font>
-            <Font name="Arial" size="20.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="48.0" layoutY="21.0" orientation="VERTICAL" prefHeight="359.0" prefWidth="504.0">
+         <children>
+            <Label fx:id="rootTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="324.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Arial Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" prefHeight="20.0" prefWidth="288.0" textAlignment="CENTER" textFill="#2e9924">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+               <FlowPane.margin>
+                  <Insets top="10.0" />
+               </FlowPane.margin>
+            </Label>
+            <GridPane hgap="50.0" prefHeight="175.0" prefWidth="426.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label text="Nom" textFill="WHITE">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="nomTextField">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Label text="Prénom" textFill="WHITE">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="prenomTextField">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Mail" textFill="WHITE">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="mailTextField">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="87.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Mot de Passe" textFill="WHITE">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="passwordTextField">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+            <Button mnemonicParsing="false" onAction="#sauvegarder" prefHeight="43.0" prefWidth="149.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: rgb(255,255,255); -fx-border-width: 3;" text="Sauvegarder" textFill="#2c3e50">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <FlowPane.margin>
+                  <Insets top="10.0" />
+               </FlowPane.margin>
+            </Button>
+         </children>
+      </FlowPane>
       <Button contentDisplay="CENTER" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#quitter" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="Retour" textFill="#2c3e50">
          <font>
             <Font name="Arial" size="16.0" />
@@ -54,10 +132,5 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="dataUpdated" alignment="CENTER" contentDisplay="CENTER" layoutX="216.0" layoutY="277.0" opacity="0.0" prefHeight="17.0" prefWidth="168.0" text="Données mis à jour   🗸" textAlignment="CENTER" textFill="#2e9924">
-         <font>
-            <Font name="Arial" size="16.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
