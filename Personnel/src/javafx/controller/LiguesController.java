@@ -33,7 +33,6 @@ public class LiguesController implements Initializable{
 	@FXML private TableColumn<Ligue, String> index;
 	@FXML private TableColumn<Ligue, String> nomLigue;
 	
-	
 
 	@FXML
 	public void quitter() throws IOException {
@@ -42,11 +41,13 @@ public class LiguesController implements Initializable{
 	}
 	@FXML
 	public void selectLigue(ActionEvent event) throws IOException {
-		
-		//MainApp.getStage().setUserData(tableView.getSelectionModel().getSelectedItem());
 		ligue = tableView.getSelectionModel().getSelectedItem();
+		
+		if (ligue != null) {
+		//MainApp.getStage().setUserData(tableView.getSelectionModel().getSelectedItem());
 		AnchorPane selectedLigue = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Ligue.fxml"));
 		anchorPane.getChildren().setAll(selectedLigue);
+		}
 		
 	}
 	@FXML
@@ -56,8 +57,12 @@ public class LiguesController implements Initializable{
 	}
 	@FXML
 	public void supprimer(ActionEvent event) {
-		tableView.getSelectionModel().getSelectedItem().remove();
-		loadLigues();
+		ligue = tableView.getSelectionModel().getSelectedItem();
+		
+		if (ligue != null) {
+			ligue.remove();
+			loadLigues();
+		}
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

@@ -36,7 +36,6 @@ public class AjouterEmployeController {
 	public void quitter(ActionEvent event) throws IOException {
 		AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/Ligue.fxml"));
 		anchorPane.getChildren().setAll(anchor);
-		
 	}
 	
 	@FXML
