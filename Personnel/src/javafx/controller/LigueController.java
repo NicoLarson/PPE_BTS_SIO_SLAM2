@@ -37,7 +37,6 @@ public class LigueController implements Initializable {
 	@FXML private Label nomLigue;
 	
 
-
 	@FXML
 	public void quitter(ActionEvent event) throws IOException {
 		AnchorPane accessLigues = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Ligues.fxml"));
@@ -57,6 +56,13 @@ public class LigueController implements Initializable {
 		anchorPane.getChildren().setAll(anchor);
 	}
 
+	@FXML
+	private void updateLigue() throws IOException
+	{
+		AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/ModifierLigue.fxml"));
+		anchorPane.getChildren().setAll(anchor);
+	}
+	
 	@FXML
 	public void supprimer(ActionEvent event) {
 		employeTable.getSelectionModel().getSelectedItem().remove();

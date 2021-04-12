@@ -44,9 +44,9 @@ public class LiguesController implements Initializable{
 		ligue = tableView.getSelectionModel().getSelectedItem();
 		
 		if (ligue != null) {
-		//MainApp.getStage().setUserData(tableView.getSelectionModel().getSelectedItem());
-		AnchorPane selectedLigue = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Ligue.fxml"));
-		anchorPane.getChildren().setAll(selectedLigue);
+			//MainApp.getStage().setUserData(tableView.getSelectionModel().getSelectedItem());
+			AnchorPane selectedLigue = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Ligue.fxml"));
+			anchorPane.getChildren().setAll(selectedLigue);
 		}
 		
 	}

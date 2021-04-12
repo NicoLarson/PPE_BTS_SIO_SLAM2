@@ -36,8 +36,8 @@
       </Button>
       <TableView fx:id="tableView" layoutX="129.0" layoutY="60.0" prefHeight="257.0" prefWidth="342.0">
          <columns>
-            <TableColumn fx:id="index" prefWidth="75.0" text="C1" />
-            <TableColumn fx:id="nomLigue" prefWidth="265.33335876464844" text="C2" />
+            <TableColumn fx:id="index" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="nomLigue" prefWidth="265.33335876464844" text="Nom" />
          </columns>
       </TableView>
       <Button contentDisplay="CENTER" layoutX="394.0" layoutY="331.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: #ff3300; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="supprimer" textFill="WHITE">
