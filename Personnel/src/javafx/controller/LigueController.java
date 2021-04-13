@@ -52,8 +52,11 @@ public class LigueController implements Initializable {
 	@FXML
 	public void selectEmploye(ActionEvent event) throws IOException {
 		employe = employeTable.getSelectionModel().getSelectedItem();
-		AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/ModifierEmploye.fxml"));
-		anchorPane.getChildren().setAll(anchor);
+
+		if (employe != null) {
+			AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/ModifierEmploye.fxml"));
+			anchorPane.getChildren().setAll(anchor);
+		}
 	}
 
 	@FXML
@@ -65,8 +68,12 @@ public class LigueController implements Initializable {
 	
 	@FXML
 	public void supprimer(ActionEvent event) {
-		employeTable.getSelectionModel().getSelectedItem().remove();
-		loadEmployes();
+		employe = employeTable.getSelectionModel().getSelectedItem();
+
+		if (employe != null) {
+			employe.remove();
+			loadEmployes();
+		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
