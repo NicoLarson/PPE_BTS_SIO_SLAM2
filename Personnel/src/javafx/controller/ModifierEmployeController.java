@@ -7,9 +7,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import personnel.DateImpossible;
@@ -31,9 +31,11 @@ public class ModifierEmployeController implements Initializable {
 	@FXML
 	private DatePicker dateDepart;
 	@FXML
+	private CheckBox admin;
+	@FXML
 	private Label warning;
 	private Employe employe = LigueController.getEmploye();
-	
+
 	private void loadData()
 	{
 		nom.setText(employe.getNom());
@@ -42,6 +44,46 @@ public class ModifierEmployeController implements Initializable {
 		password.setText(employe.getPass());
 		dateArrive.setValue(employe.getDateArrive());
 		dateDepart.setValue(employe.getDateDepart());
+		if (employe.estAdmin(employe.getLigue()))
+			admin.setSelected(true);
+	}
+	
+	private boolean checkDate()
+	{
+		try {
+			employe.setDateArrive(dateArrive.getValue());
+			employe.setDateDepart(dateDepart.getValue());
+			return true;
+		} catch(Exception e) {
+			warning.setText(e.getMessage());
+			return false;
+		}
+	}
+	
+	private boolean checkField(String fieldName, String value)
+	{
+		if (value.length() == 0) {
+			warning.setText("Le champ " + fieldName + " est obligatoire");
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean checkRequiredFields()
+	{
+		return (checkField("nom", nom.getText()) &&
+				checkField("prenom", prenom.getText()) &&
+				checkField("mail", mail.getText()) &&
+				checkField("password", password.getText()) && 
+				checkDate());
+	}
+	
+	private void updateAdmin()
+	{
+		if (admin.isSelected())
+			employe.getLigue().changeAdmin(employe);
+		else if (employe.estAdmin(employe.getLigue()))
+			employe.getLigue().removeAdmin();
 	}
 	
 	@FXML
@@ -54,13 +96,16 @@ public class ModifierEmployeController implements Initializable {
 	@FXML
 	private void valider() throws DateImpossible, IOException
 	{
-		employe.setNom(nom.getText());
-		employe.setPrenom(prenom.getText());
-		employe.setMail(mail.getText());
-		employe.setPassword(password.getText());
-		employe.setDateArrive(dateArrive.getValue());
-		employe.setDateDepart(dateDepart.getValue());
-		quitter();
+		if (checkRequiredFields()) {
+			updateAdmin();
+			employe.setNom(nom.getText());
+			employe.setPrenom(prenom.getText());
+			employe.setMail(mail.getText());
+			employe.setPassword(password.getText());
+			employe.setDateArrive(dateArrive.getValue());
+			employe.setDateDepart(dateDepart.getValue());
+			quitter();
+		}
 	}
 	
 	@Override

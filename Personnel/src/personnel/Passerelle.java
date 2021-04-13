@@ -11,5 +11,6 @@ public interface Passerelle
 	public void deleteEmploye(Employe employe) throws SauvegardeImpossible;
 	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible;
 	public void newAdmin(Employe employe) throws SauvegardeImpossible;
+	public void removeAdmin(Ligue ligue) throws SauvegardeImpossible;
 	public Employe bddRoot(Employe root) throws SauvegardeImpossible;
 }

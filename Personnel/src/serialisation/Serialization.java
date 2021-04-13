@@ -94,4 +94,10 @@ public class Serialization implements personnel.Passerelle
 		return root;
 		
 	}
+
+	@Override
+	public void removeAdmin(Ligue ligue) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -43,7 +43,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		this.id = id;
 	}
 	
-	
 
 	/**
 	 * Retourne le nom de la ligue.
@@ -156,6 +155,13 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		gestionPersonnel.remove(this);
 	}
+	
+	public void removeAdmin()
+	{
+		this.administrateur = gestionPersonnel.getRoot();
+		gestionPersonnel.removeAdmin(this);
+	}
+	
 	public void update()
 	{
 		try {
@@ -179,6 +185,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	}
 	public void changeAdmin(Employe employe) 
 	{
+		this.administrateur = employe;
 		gestionPersonnel.changerAdmin(employe);
 	}
 	

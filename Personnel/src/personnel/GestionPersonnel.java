@@ -94,6 +94,7 @@ public class GestionPersonnel implements Serializable
 		return ligue;
 	}
 
+	
 	void remove(Ligue ligue)
 	{
 		
@@ -118,6 +119,15 @@ public class GestionPersonnel implements Serializable
 		passerelle.updateEmploye(employe, column);
 	}
 
+	void removeAdmin(Ligue ligue)
+	{
+		try {
+			passerelle.removeAdmin(ligue);
+		} catch (SauvegardeImpossible e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Retourne le root (super-utilisateur).
 	 * @return le root.
