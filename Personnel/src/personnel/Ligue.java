@@ -158,7 +158,6 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	
 	public void removeAdmin()
 	{
-		this.administrateur = gestionPersonnel.getRoot();
 		gestionPersonnel.removeAdmin(this);
 	}
 	
