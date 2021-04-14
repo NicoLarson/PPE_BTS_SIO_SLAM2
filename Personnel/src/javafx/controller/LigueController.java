@@ -22,6 +22,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 
 public class LigueController implements Initializable {
 	
@@ -32,8 +35,9 @@ public class LigueController implements Initializable {
 	private SortedSet<Employe> employes;
 	@FXML private AnchorPane anchorPane;
 	@FXML private TableView<Employe> employeTable;
-	@FXML private TableColumn<Employe, String> index;
+	@FXML private TableColumn<Employe, String> prenomEmploye;
 	@FXML private TableColumn<Employe, String> nomEmploye;
+	@FXML private TableColumn<Employe, String> admin;
 	@FXML private Label nomLigue;
 	
 
@@ -52,8 +56,11 @@ public class LigueController implements Initializable {
 	@FXML
 	public void selectEmploye(ActionEvent event) throws IOException {
 		employe = employeTable.getSelectionModel().getSelectedItem();
-		AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/ModifierEmploye.fxml"));
-		anchorPane.getChildren().setAll(anchor);
+
+		if (employe != null) {
+			AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/ModifierEmploye.fxml"));
+			anchorPane.getChildren().setAll(anchor);
+		}
 	}
 
 	@FXML
@@ -65,31 +72,39 @@ public class LigueController implements Initializable {
 	
 	@FXML
 	public void supprimer(ActionEvent event) {
-		employeTable.getSelectionModel().getSelectedItem().remove();
-		loadEmployes();
+		employe = employeTable.getSelectionModel().getSelectedItem();
+
+		if (employe != null) {
+			employe.remove();
+			loadEmployes();
+		}
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings("unchecked")
 	private void loadEmployes() {
 		employes = ligue.getEmployes();
 		nomLigue.setText(ligue.getNom());
 		
 		observableEmploye = FXCollections.observableArrayList(employes);
-		nomEmploye.setCellValueFactory(new PropertyValueFactory<>("nom"));
 		employeTable.setItems(observableEmploye);
-		index.setCellFactory( (Callback) p -> new TableCell()
-			{
-			    public void updateItem( Object item, boolean empty )
-			    {
-			        super.updateItem( item, empty );
-			        setGraphic( null );
-			        setText( empty ? null : getIndex() + 1 + "" );
-			    }
-			}
-		);
+		nomEmploye.setCellValueFactory(new PropertyValueFactory<>("nom"));
+		prenomEmploye.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+		admin.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().estAdmin(ligue))));
+		
+		admin.setCellFactory( (Callback) p -> new TableCell()
+		{
+		    public void updateItem( Object item, boolean empty )
+		    {
+		        super.updateItem( item, empty );
+		        if (!empty) {
+		        	setText(item.equals("true") ? "Oui" : "Non");
+		        }
+		    }
+		}
+	);
 	}
-	
 
+		
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

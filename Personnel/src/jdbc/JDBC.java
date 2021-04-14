@@ -256,6 +256,22 @@ public class JDBC implements Passerelle
 	}
 
 	@Override
+	public void removeAdmin(Ligue ligue) throws SauvegardeImpossible
+	{
+		try
+		{
+			PreparedStatement tableEmploye;
+			tableEmploye = connection.prepareStatement("UPDATE employe SET admin_ligue = 0 WHERE id_ligue = ?");
+			tableEmploye.setInt(1, ligue.getId());
+			tableEmploye.executeUpdate();
+		}
+		catch (SQLException e)
+		{
+			throw new SauvegardeImpossible(e);
+		}
+	}
+	
+	@Override
 	public void newAdmin(Employe employe) throws SauvegardeImpossible 
 	{
 		try 
