@@ -13,7 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import personnel.Employe;
 import personnel.GestionPersonnel;
+import personnel.Ligue;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -21,12 +23,15 @@ public class LoginController implements Initializable{
 	@FXML
 	private AnchorPane anchorPane;
 	@FXML
-	private PasswordField passwordLogin;
+	private PasswordField password;
 	@FXML
-	private Label passwordIncorrect;
+	private TextField login;
+	@FXML
+	private Label warning;
 
 	private final GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	private Employe root = gestionPersonnel.getRoot();
+	private static Employe user;
 	
 	public GestionPersonnel getGestion() {
 		return gestionPersonnel;
@@ -34,30 +39,48 @@ public class LoginController implements Initializable{
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		Platform.runLater(() -> passwordLogin.requestFocus());
+		Platform.runLater(() -> login.requestFocus());
 	}
 	
-	@FXML
-	private void checkLogin(String password) throws IOException
+	private void checkLogin(String username, String pwd) throws IOException
 	{
-		if (password.equals(root.getPass())) {
+		if (username.equals(root.getNom()) && pwd.equals(root.getPass()))
+		{
+			user = root;
 			AnchorPane anchor = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Gerer.fxml"));
 			anchorPane.getChildren().setAll(anchor);
-		} else {
-			passwordIncorrect.setText("Mot de passe incorrect");
-			passwordLogin.setText("");
+		} 
+		
+		else 
+		{
+			for(Ligue ligue : gestionPersonnel.getLigues()) 
+			{
+				
+				for(Employe employe : ligue.getEmployes()) 
+				{
+					
+					if (username.equals(employe.getMail()) && pwd.equals(employe.getPass())) 
+					{
+						user = employe;
+						AnchorPane anchor = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Ligues.fxml"));
+						anchorPane.getChildren().setAll(anchor);
+					}
+				}
+			}
+			warning.setText("Mot de passe incorrect");
+			password.setText("");
 		}
 	}
 	
 	@FXML
 	private void btnLogin() throws IOException {		
-		checkLogin(passwordLogin.getText());
+		checkLogin(login.getText(), password.getText());
 	}
 
 	@FXML
 	private void handleOnKeyPressed(KeyEvent event) throws IOException
 	{
 		if (event.getCode() == KeyCode.ENTER)
-			checkLogin(passwordLogin.getText());
+			checkLogin(login.getText(), password.getText());
 	}
 }
