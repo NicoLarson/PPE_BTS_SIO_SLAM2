@@ -57,7 +57,7 @@ public class LigueController implements Initializable {
 	@FXML
 	public void selectEmploye(ActionEvent event) throws IOException {
 		employe = employeTable.getSelectionModel().getSelectedItem();
-		ROLigueController.setEmploye(employe);
+		
 
 		if (employe != null) {
 			AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/ModifierEmploye.fxml"));

@@ -50,7 +50,6 @@ public class ROLiguesController implements Initializable{
 		if (ligue != null) {
 			String liguePath = (LoginController.getUser().estAdmin(ligue)||LoginController.getUser().estRoot())
 					?"/javafx/view/Ligue.fxml":"/javafx/view/ROLigue.fxml";
-			System.out.println(liguePath);
 			AnchorPane selectedLigue = (AnchorPane)FXMLLoader.load(getClass().getResource(liguePath));
 			anchorPane.getChildren().setAll(selectedLigue);
 			

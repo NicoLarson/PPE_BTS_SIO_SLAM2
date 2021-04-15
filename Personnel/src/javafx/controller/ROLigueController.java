@@ -97,10 +97,5 @@ public class ROLigueController implements Initializable{
 		
 	}
 	
-	public static Employe getEmploye() {
-		return employe;
-	}
-	public static void setEmploye(Employe emp) {
-		employe = emp;
-	}
+	
 }
