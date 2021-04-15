@@ -1,5 +1,9 @@
 package javafx.controller;
 
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,70 +12,51 @@ import java.util.SortedSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import personnel.GestionPersonnel;
 import personnel.Ligue;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 
-
-public class LiguesController implements Initializable{
+public class ROLiguesController implements Initializable{
 	
 	private GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	private SortedSet<Ligue> ligues = gestionPersonnel.getLigues();
 	private ObservableList<Ligue> observableLigues;
 	private static Ligue ligue;
 	
-	
 	@FXML private AnchorPane anchorPane;
 	@FXML private TableView<Ligue> tableView;
 	@FXML private TableColumn<Ligue, String> index;
 	@FXML private TableColumn<Ligue, String> nomLigue;
-	
+
 
 	@FXML
-	public void quitter() throws IOException {
-		AnchorPane anchor = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Gerer.fxml"));
+	public void logout(ActionEvent event) throws IOException {
+		AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/Login.fxml"));
 		anchorPane.getChildren().setAll(anchor);
 	}
+	
 	@FXML
 	public void selectLigue(ActionEvent event) throws IOException {
+		
 		ligue = tableView.getSelectionModel().getSelectedItem();
-		ROLiguesController.setLigue(ligue);
+		LiguesController.setLigue(ligue);
 		
 		if (ligue != null) {
-			
-			AnchorPane selectedLigue = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Ligue.fxml"));
+			String liguePath = (LoginController.getUser().estAdmin(ligue)||LoginController.getUser().estRoot())
+					?"/javafx/view/Ligue.fxml":"/javafx/view/ROLigue.fxml";
+			System.out.println(liguePath);
+			AnchorPane selectedLigue = (AnchorPane)FXMLLoader.load(getClass().getResource(liguePath));
 			anchorPane.getChildren().setAll(selectedLigue);
-		}
-		
-	}
-	@FXML
-	public void ajouterLigue() throws IOException {
-		AnchorPane ajouteLigue = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/AjouterLigue.fxml"));
-		anchorPane.getChildren().setAll(ajouteLigue);
-	}
-	@FXML
-	public void supprimer(ActionEvent event) {
-		ligue = tableView.getSelectionModel().getSelectedItem();
-		ROLiguesController.setLigue(ligue);
-		
-		if (ligue != null) {
-			ligue.remove();
-			loadLigues();
+			
 		}
 	}
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		loadLigues();
-		
-	}
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void loadLigues() {
 		observableLigues = FXCollections.observableArrayList(ligues);
@@ -89,11 +74,18 @@ public class LiguesController implements Initializable{
 		);
 		
 	}
+	
 	public static Ligue getLigue() {
 		return ligue;
 	}
 	public static void setLigue(Ligue ligue) {
-		LiguesController.ligue = ligue;
+		ROLiguesController.ligue = ligue;
 	}
 	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		loadLigues();
+		
+	}
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -14,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #34495e;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controller.ModifierEmployeController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #34495e;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controller.ROModifierEmployeController">
    <children>
       <VBox alignment="CENTER" layoutX="60.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="employeTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="233.0" text="Modifier employé" textFill="WHITE">
+            <Label fx:id="employeAffiche" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="233.0" text="Modifier employé" textFill="WHITE">
                <font>
                   <Font name="Arial" size="22.0" />
                </font>
@@ -51,7 +52,7 @@
                               <Font name="Arial" size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="nom" style="-fx-background-radius: 0;" />
+                        <TextField fx:id="nom" editable="false" style="-fx-background-radius: 0;" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.columnIndex="1">
@@ -61,7 +62,7 @@
                               <Font name="Arial" size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="prenom" style="-fx-background-radius: 0;" />
+                        <TextField fx:id="prenom" editable="false" style="-fx-background-radius: 0;" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.rowIndex="1">
@@ -71,17 +72,17 @@
                               <Font name="Arial" size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="mail" style="-fx-background-radius: 0;" />
+                        <TextField fx:id="mail" editable="false" style="-fx-background-radius: 0;" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox alignment="CENTER_LEFT" disable="true" prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label text="Mot de Passe" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="password" style="-fx-background-radius: 0;" />
+                        <PasswordField fx:id="password" style="-fx-background-radius: 0;" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.rowIndex="2">
@@ -91,7 +92,7 @@
                               <Font name="Arial" size="17.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="dateArrive" prefHeight="25.0" prefWidth="271.0" style="-fx-background-radius: 0;" />
+                        <DatePicker fx:id="dateArrive" editable="false" prefHeight="25.0" prefWidth="271.0" style="-fx-background-radius: 0;" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -101,12 +102,12 @@
                               <Font name="Arial" size="17.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="dateDepart" prefHeight="25.0" prefWidth="271.0" style="-fx-background-radius: 0;" />
+                        <DatePicker fx:id="dateDepart" editable="false" prefHeight="25.0" prefWidth="271.0" style="-fx-background-radius: 0;" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
                      <children>
-                        <CheckBox fx:id="admin" mnemonicParsing="false" text="Admin" textFill="WHITE">
+                        <CheckBox fx:id="admin" disable="true" mnemonicParsing="false" text="Admin" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="17.0" />
                            </font>
@@ -118,17 +119,6 @@
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>
             </GridPane>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#valider" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="Sauvegarder" textFill="#2c3e50">
-               <font>
-                  <Font name="Arial" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <VBox.margin>
-                  <Insets top="25.0" />
-               </VBox.margin>
-            </Button>
          </children>
       </VBox>
       <Button contentDisplay="CENTER" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#quitter" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="Retour" textFill="#2c3e50">

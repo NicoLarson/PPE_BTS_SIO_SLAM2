@@ -35,7 +35,7 @@ public class ModifierEmployeController implements Initializable{
 	@FXML
 	private TextField mail;
 	@FXML
-	private PasswordField password;
+	private TextField password;
 	@FXML
 	private DatePicker dateArrive;
 	@FXML

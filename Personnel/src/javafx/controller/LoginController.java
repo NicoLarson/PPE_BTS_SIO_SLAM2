@@ -33,8 +33,13 @@ public class LoginController implements Initializable{
 	private Employe root = gestionPersonnel.getRoot();
 	private static Employe user;
 	
+	
 	public GestionPersonnel getGestion() {
 		return gestionPersonnel;
+	}
+	
+	public static Employe getUser() {
+		return user;
 	}
 	
 	@Override
@@ -62,7 +67,7 @@ public class LoginController implements Initializable{
 					if (username.equals(employe.getMail()) && pwd.equals(employe.getPass())) 
 					{
 						user = employe;
-						AnchorPane anchor = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Ligues.fxml"));
+						AnchorPane anchor = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/ROLigues.fxml"));
 						anchorPane.getChildren().setAll(anchor);
 					}
 				}
