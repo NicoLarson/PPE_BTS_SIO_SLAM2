@@ -18,6 +18,7 @@ import personnel.DateImpossible;
 import personnel.Employe;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 
 public class ModifierEmployeController implements Initializable{
@@ -40,6 +41,8 @@ public class ModifierEmployeController implements Initializable{
 	private DatePicker dateArrive;
 	@FXML
 	private DatePicker dateDepart;
+	@FXML
+	private CheckBox admin;
 
 	// Event Listener on Button.onAction
 	@FXML
@@ -51,8 +54,7 @@ public class ModifierEmployeController implements Initializable{
 	@FXML
 	public void valider(ActionEvent event) throws IOException, DateImpossible {
 		update();
-		AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/Ligue.fxml"));
-		anchorPane.getChildren().setAll(anchor);
+		
 	}
 	@FXML
 	public void resetArrive(ActionEvent event) {
@@ -72,6 +74,9 @@ public class ModifierEmployeController implements Initializable{
 		password.setText(employe.getPass());
 		dateArrive.setValue(employe.getDateArrive());
 		dateDepart.setValue(employe.getDateDepart());
+		if (employe.estAdmin(employe.getLigue()))
+            admin.setSelected(true);
+		
 		
 	}
 	public void update() {
@@ -80,8 +85,10 @@ public class ModifierEmployeController implements Initializable{
 			employe.setPrenom(prenom.getText());
 			employe.setMail(mail.getText());
 			employe.setPassword(password.getText());
+			updateAdmin();
 			employe.setDateArrive(dateArrive.getValue());
 			employe.setDateDepart(dateDepart.getValue());
+			
 		}catch(DateImpossible e) {
 			Alert error = new Alert(Alert.AlertType.ERROR);
 			error.setTitle("Date Impossible");
@@ -90,6 +97,21 @@ public class ModifierEmployeController implements Initializable{
 		}
 		
 	}
+	
+	private void updateAdmin()
+    {
+        if (admin.isSelected()) {
+        	employe.getLigue().changeAdmin(employe);
+        	System.out.println("selected");
+        }
+            
+        else if (employe.estAdmin(employe.getLigue())) {
+        	employe.getLigue().removeAdmin();
+        	
+        }
+            
+    }
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		loadEmploye();
