@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import personnel.DateImpossible;
 import personnel.Employe;
 import javafx.scene.control.PasswordField;
-
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 
 public class ModifierEmployeController implements Initializable{
@@ -74,13 +74,21 @@ public class ModifierEmployeController implements Initializable{
 		dateDepart.setValue(employe.getDateDepart());
 		
 	}
-	public void update() throws DateImpossible {
-		employe.setNom(nom.getText());
-		employe.setPrenom(prenom.getText());
-		employe.setMail(mail.getText());
-		employe.setPassword(password.getText());
-		employe.setDateArrive(dateArrive.getValue());
-		employe.setDateDepart(dateDepart.getValue());
+	public void update() {
+		try {
+			employe.setNom(nom.getText());
+			employe.setPrenom(prenom.getText());
+			employe.setMail(mail.getText());
+			employe.setPassword(password.getText());
+			employe.setDateArrive(dateArrive.getValue());
+			employe.setDateDepart(dateDepart.getValue());
+		}catch(DateImpossible e) {
+			Alert error = new Alert(Alert.AlertType.ERROR);
+			error.setTitle("Date Impossible");
+			error.setContentText("La date d'arrivée doit être inférieur à la date de départ");
+			error.showAndWait();
+		}
+		
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

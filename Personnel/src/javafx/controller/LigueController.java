@@ -6,11 +6,13 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.SortedSet;
 
 import javafx.event.ActionEvent;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.AnchorPane;
@@ -75,10 +77,25 @@ public class LigueController implements Initializable {
 	@FXML
 	public void supprimer(ActionEvent event) {
 		employe = employeTable.getSelectionModel().getSelectedItem();
+		if(employe == LoginController.getUser()) {
+			Alert warning = new Alert(Alert.AlertType.WARNING);
+			warning.setContentText("Impossible de se supprimer");
+			warning.setTitle("Warning");
+			warning.setHeaderText("Action non autorisée");
+		}
 
-		if (employe != null) {
-			employe.remove();
-			loadEmployes();
+		else if (employe != null) {
+			
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setTitle("Supprimer");
+			alert.setHeaderText("Voulez vous supprimer "+employe.getNom()+"?");
+			alert.setContentText("Cette action ne peut pas être annulée");
+			Optional <ButtonType> action = alert.showAndWait();
+			if(action.get() == ButtonType.OK) {
+				employe.remove();
+				loadEmployes();
+			}
+			
 		}
 	}
 

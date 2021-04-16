@@ -2,6 +2,7 @@ package javafx.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.SortedSet;
 
@@ -11,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -63,8 +66,16 @@ public class LiguesController implements Initializable{
 		ROLiguesController.setLigue(ligue);
 		
 		if (ligue != null) {
-			ligue.remove();
-			loadLigues();
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setTitle("Supprimer");
+			alert.setHeaderText("Voulez vous supprimer "+ligue.getNom()+"?");
+			alert.setContentText("Cette action ne peut pas être annulée");
+			Optional <ButtonType> action = alert.showAndWait();
+			if(action.get() == ButtonType.OK) {
+				ligue.remove();
+				loadLigues();
+			}
+			
 		}
 	}
 	@Override
