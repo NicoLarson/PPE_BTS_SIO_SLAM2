@@ -2,8 +2,8 @@
 > Saturnino - Mathieu - Nicolas
 ## Présentation
 Un des responsables de la M2L, utilise une application pour gérer les employés des ligues. L’application est mise à votre disposition par le biais des ressources suivantes :
-- Le code source sur ![Github.](https://github.com/alexandreMesle/personnel)
-- ![La documentation.](https://enseignement.alexandre-mesle.com/PPE/personnel/javadoc/)
+- Le code source sur [Github.](https://github.com/alexandreMesle/personnel)
+- [La documentation.](https://enseignement.alexandre-mesle.com/PPE/personnel/javadoc/)
 - Une bibliothèque logiciel de dialogue en ligne de commande, disponible dans ![ce dépôt.](https://github.com/alexandreMesle/CommandLine) 
 
 Cette application, très simple, n’existe qu’en ligne de commande et est mono-utilisateur. Nous souhaiterions désigner un administrateur par ligue et lui confier la tâche de recenser les employés de sa ligue. Une partie du travail est déjà faite mais vous allez devoir le compléter.
