@@ -1,4 +1,7 @@
 # Logiciel de gestion de personnel de ligues
+## Documentation
+[Mode_opéatoire.pdf](https://github.com/NicoLarson/PPE_BTS_SIO_SLAM2/blob/master/documentation/Mode_operatoire_Gestion_du_personnel.pdf)
+
 ## Présentation
 Un des responsables de la M2L, utilise une application pour gérer les employés des ligues. L’application est mise à votre disposition par le biais des ressources suivantes :
 - Le code source sur [Github.](https://github.com/alexandreMesle/personnel)
