@@ -13,12 +13,16 @@ import javafx.scene.layout.AnchorPane;
 import personnel.Ligue;
 
 public class ModifierLigueController implements Initializable{
+	
 	@FXML
 	private AnchorPane anchorPane;
 	@FXML
 	private TextField nomLigue;
 	@FXML
 	private Label message;
+	/**
+	 * ligue selectionnée
+	 */
 	private Ligue ligue = LiguesController.getLigue();
 	private String currentName = LiguesController.getLigue().getNom();
 	
@@ -29,6 +33,11 @@ public class ModifierLigueController implements Initializable{
 		anchorPane.getChildren().setAll(anchor);
 	}
 	
+	
+	/**
+	 * Methode qui mets à jour les données de la ligue
+	 * @throws IOException
+	 */
 	@FXML
 	private void updateLigue() throws IOException
 	{
@@ -41,6 +50,10 @@ public class ModifierLigueController implements Initializable{
 		}
 	}
 
+	
+	/**
+	 * Methode que se lance en affichant la page
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		nomLigue.setText(currentName);

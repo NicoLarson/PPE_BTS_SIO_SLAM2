@@ -82,6 +82,7 @@ public class LigueController implements Initializable {
 			warning.setContentText("Impossible de se supprimer");
 			warning.setTitle("Warning");
 			warning.setHeaderText("Action non autorisée");
+			warning.showAndWait();
 		}
 
 		else if (employe != null) {

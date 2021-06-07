@@ -33,6 +33,10 @@ public class JDBC implements Passerelle
 		}
 	}
 	
+	/**
+	 * Methode responsable pour charger les données de la base dans un objet unique
+	 */
+	
 	@Override
 	public GestionPersonnel getGestionPersonnel() 
 	{
@@ -100,7 +104,11 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(e);
 		}
 	}
-	
+	/**
+	 * Methode responsable pour insérer une ligue dans la base de donnée lors de sa création
+	 * @param Ligue
+	 * @return id de la ligue
+	 */
 	@Override
 	public int insert(Ligue ligue) throws SauvegardeImpossible 
 	{
