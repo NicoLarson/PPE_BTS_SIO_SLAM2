@@ -23,88 +23,93 @@ import javafx.util.Callback;
 import personnel.GestionPersonnel;
 import personnel.Ligue;
 
+public class LiguesController implements Initializable {
 
-public class LiguesController implements Initializable{
-	
 	private GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 	private SortedSet<Ligue> ligues = gestionPersonnel.getLigues();
 	private ObservableList<Ligue> observableLigues;
 	private static Ligue ligue;
-	
-	
-	@FXML private AnchorPane anchorPane;
-	@FXML private TableView<Ligue> tableView;
-	@FXML private TableColumn<Ligue, String> index;
-	@FXML private TableColumn<Ligue, String> nomLigue;
-	
+
+	@FXML
+	private AnchorPane anchorPane;
+	@FXML
+	private TableView<Ligue> tableView;
+	@FXML
+	private TableColumn<Ligue, String> index;
+	@FXML
+	private TableColumn<Ligue, String> nomLigue;
 
 	@FXML
 	public void quitter() throws IOException {
-		AnchorPane anchor = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Gerer.fxml"));
+		AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/Gerer.fxml"));
 		anchorPane.getChildren().setAll(anchor);
 	}
+
 	@FXML
 	public void selectLigue(ActionEvent event) throws IOException {
 		ligue = tableView.getSelectionModel().getSelectedItem();
 		ROLiguesController.setLigue(ligue);
-		
+
 		if (ligue != null) {
-			
-			AnchorPane selectedLigue = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/Ligue.fxml"));
+
+			AnchorPane selectedLigue = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/Ligue.fxml"));
 			anchorPane.getChildren().setAll(selectedLigue);
 		}
-		
+
 	}
+
 	@FXML
 	public void ajouterLigue() throws IOException {
-		AnchorPane ajouteLigue = (AnchorPane)FXMLLoader.load(getClass().getResource("/javafx/view/AjouterLigue.fxml"));
+		AnchorPane ajouteLigue = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/view/AjouterLigue.fxml"));
 		anchorPane.getChildren().setAll(ajouteLigue);
 	}
+
 	@FXML
 	public void supprimer(ActionEvent event) {
 		ligue = tableView.getSelectionModel().getSelectedItem();
 		ROLiguesController.setLigue(ligue);
-		
+
 		if (ligue != null) {
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 			alert.setTitle("Supprimer");
-			alert.setHeaderText("Voulez vous supprimer "+ligue.getNom()+"?");
+			alert.setHeaderText("Voulez vous supprimer " + ligue.getNom() + "?");
 			alert.setContentText("Cette action ne peut pas être annulée");
-			Optional <ButtonType> action = alert.showAndWait();
-			if(action.get() == ButtonType.OK) {
+			Optional<ButtonType> action = alert.showAndWait();
+			if (action.get() == ButtonType.OK) {
 				ligue.remove();
 				loadLigues();
 			}
-			
+
 		}
 	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		loadLigues();
-		
+
 	}
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void loadLigues() {
 		observableLigues = FXCollections.observableArrayList(ligues);
 		nomLigue.setCellValueFactory(new PropertyValueFactory<>("nom"));
 		tableView.setItems(observableLigues);
-		index.setCellFactory( (Callback) p -> new TableCell()
-			{
-			    public void updateItem( Object item, boolean empty )
-			    {
-			        super.updateItem( item, empty );
-			        setGraphic( null );
-			        setText( empty ? null : getIndex() + 1 + "" );
-			    }
+		index.setCellFactory((Callback) p -> new TableCell() {
+			public void updateItem(Object item, boolean empty) {
+				super.updateItem(item, empty);
+				setGraphic(null);
+				setText(empty ? null : getIndex() + 1 + "");
 			}
-		);
-		
+		});
+
 	}
+
 	public static Ligue getLigue() {
 		return ligue;
 	}
+
 	public static void setLigue(Ligue ligue) {
 		LiguesController.ligue = ligue;
 	}
-	
+
 }

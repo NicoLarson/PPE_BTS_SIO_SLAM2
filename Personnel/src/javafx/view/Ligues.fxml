@@ -8,50 +8,76 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #34495e;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controller.LiguesController">
-   <children>
-      <Button contentDisplay="CENTER" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#quitter" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="Retour" textFill="#2c3e50">
-         <font>
-            <Font name="Arial" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button contentDisplay="CENTER" layoutX="223.0" layoutY="331.0" mnemonicParsing="false" onAction="#ajouterLigue" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="Ajouter une ligue" textFill="#2c3e50">
-         <font>
-            <Font name="Arial" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button contentDisplay="CENTER" layoutX="52.0" layoutY="331.0" mnemonicParsing="false" onAction="#selectLigue" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="Valider" textFill="#2c3e50">
-         <font>
-            <Font name="Arial" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <TableView fx:id="tableView" layoutX="129.0" layoutY="60.0" prefHeight="257.0" prefWidth="342.0">
-         <columns>
-            <TableColumn fx:id="index" prefWidth="75.0" text="Id" />
-            <TableColumn fx:id="nomLigue" prefWidth="265.33335876464844" text="Nom" />
-         </columns>
-      </TableView>
-      <Button contentDisplay="CENTER" layoutX="394.0" layoutY="331.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: #ff3300; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;" text="supprimer" textFill="WHITE">
-         <font>
-            <Font name="Arial" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="20.0" prefHeight="17.0" prefWidth="233.0" text="Liste des Ligues" textFill="WHITE">
-         <font>
-            <Font name="Arial" size="18.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity"
+	maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+	prefHeight="400.0" prefWidth="600.0"
+	style="-fx-background-color: #34495e;"
+	xmlns="http://javafx.com/javafx/11.0.2"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="javafx.controller.LiguesController">
+	<children>
+		<Button contentDisplay="CENTER" layoutX="20.0" layoutY="20.0"
+			mnemonicParsing="false" onAction="#quitter" prefHeight="40.0"
+			prefWidth="80.0"
+			style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;"
+			text="Retour" textFill="#2c3e50">
+			<font>
+				<Font name="Arial" size="16.0" />
+			</font>
+			<cursor>
+				<Cursor fx:constant="HAND" />
+			</cursor>
+		</Button>
+		<Button contentDisplay="CENTER" layoutX="223.0" layoutY="331.0"
+			mnemonicParsing="false" onAction="#ajouterLigue" prefHeight="40.0"
+			prefWidth="154.0"
+			style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;"
+			text="Ajouter" textFill="#2c3e50">
+			<font>
+				<Font name="Arial" size="16.0" />
+			</font>
+			<cursor>
+				<Cursor fx:constant="HAND" />
+			</cursor>
+		</Button>
+		<Button contentDisplay="CENTER" layoutX="52.0" layoutY="331.0"
+			mnemonicParsing="false" onAction="#selectLigue" prefHeight="40.0"
+			prefWidth="154.0"
+			style="-fx-background-color: #1ABC9C; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;"
+			text="Modifier" textFill="#2c3e50">
+			<font>
+				<Font name="Arial" size="16.0" />
+			</font>
+			<cursor>
+				<Cursor fx:constant="HAND" />
+			</cursor>
+		</Button>
+		<TableView fx:id="tableView" layoutX="129.0" layoutY="60.0"
+			prefHeight="257.0" prefWidth="342.0">
+			<columns>
+				<TableColumn fx:id="index" prefWidth="75.0" text="Id" />
+				<TableColumn fx:id="nomLigue"
+					prefWidth="265.33335876464844" text="Nom" />
+			</columns>
+		</TableView>
+		<Button contentDisplay="CENTER" layoutX="394.0" layoutY="331.0"
+			mnemonicParsing="false" onAction="#supprimer" prefHeight="40.0"
+			prefWidth="154.0"
+			style="-fx-background-color: #ff3300; -fx-background-radius: 0; -fx-border-color: #FFF; -fx-border-width: 3;"
+			text="Supprimer" textFill="WHITE">
+			<font>
+				<Font name="Arial" size="16.0" />
+			</font>
+			<cursor>
+				<Cursor fx:constant="HAND" />
+			</cursor>
+		</Button>
+		<Label alignment="CENTER" contentDisplay="CENTER"
+			layoutX="183.0" layoutY="20.0" prefHeight="17.0" prefWidth="233.0"
+			text="Liste des Ligues" textFill="WHITE">
+			<font>
+				<Font name="Arial" size="18.0" />
+			</font>
+		</Label>
+	</children>
 </AnchorPane>

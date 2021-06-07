@@ -33,7 +33,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		this(gestionPersonnel, -1, nom);
 		this.id = gestionPersonnel.insert(this); 
 	}
-
+	
 	Ligue(GestionPersonnel gestionPersonnel, int id, String nom)
 	{
 		this.nom = nom;
